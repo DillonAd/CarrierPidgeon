@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CarrierPidgeon.Core\CarrierPidgeon.Core.csproj" />
+  </ItemGroup>
+
 </Project>
