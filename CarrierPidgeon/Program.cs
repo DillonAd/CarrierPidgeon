@@ -1,4 +1,5 @@
 ﻿using CarrierPidgeon.Core;
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -13,13 +14,23 @@ namespace CarrierPidgeon
             string[] dllFiles = Directory.GetFiles(assemblyFolder, "*.dll");
 
             Assembly assembly;
+            IScheduler batchedInterfaceCollection = new Scheduler();
 
             foreach(string dllFile in dllFiles)
             {
                 assembly = Assembly.LoadFile(dllFile);
-                var types = assembly.GetTypes().Where(t => t.IsAssignableFrom(typeof(BatchDrivenInterface)) 
+                var types = assembly.GetTypes().Where(t => t.IsAssignableFrom(typeof(BatchDrivenInterface))
                     && !t.IsInterface
-                    && !t.IsAbstract);
+                    && !t.IsAbstract).ToList();
+
+                foreach(var type in types)
+                {
+                    if(type.IsAssignableFrom(typeof(BatchDrivenInterface)))
+                    {
+                        var obj = Activator.CreateInstance(type);
+                        ((BatchDrivenInterface)obj).Execute();
+                    }
+                }
             }
         }
     }

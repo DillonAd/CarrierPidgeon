@@ -3,7 +3,7 @@ using CarrierPidgeon.Core;
 
 namespace CarrierPidgeon
 {
-    public class BatchedInterfaceCollection : IBatchedInterfaceCollection
+    public class Scheduler : IScheduler
     {
         public IEnumerable<BatchDrivenInterface> Interfaces => _interfaces;
         private List<BatchDrivenInterface> _interfaces { get; set; }
