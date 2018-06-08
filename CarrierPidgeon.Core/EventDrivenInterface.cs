@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Core
 {
-    public abstract class EventDrivenInterface<T>
+    public abstract class EventDrivenInterface
     {
-        protected delegate EventHandler OnMessageReceived<T>(T t);
-        protected event OnMessageReceived<T> MessageReceived;
+        protected delegate EventHandler OnMessageReceived(EventMessage eventMessage);
+        protected event OnMessageReceived MessageReceived;
     }
 }
