@@ -11,7 +11,6 @@ namespace CarrierPidgeon.Interfaces.ActiveMQ
         private readonly ISession _session;
         private readonly IDestination _destination;
         
-        private IMessageProducer _producer;
         private IMessageConsumer _consumer;
 
         public event OnMessageReceived MessageReceived;
