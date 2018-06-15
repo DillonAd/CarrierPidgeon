@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CarrierPidgeon.Core
+namespace CarrierPidgeon.Core.Events
 {
     public class EventMessage
     {
