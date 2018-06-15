@@ -6,7 +6,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierPidgeon", "CarrierPi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierPidgeon.Core", "CarrierPidgeon.Core\CarrierPidgeon.Core.csproj", "{64338FBF-D171-400D-9FAD-6D1F5C4B171F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierPidgeon.Interfaces.ActiveMQ", "CarrierPidgeon.Interfaces.ActiveMQ\CarrierPidgeon.Interfaces.ActiveMQ.csproj", "{71BFCEB5-5A1B-43D6-B07A-0819070C45CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierPidgeon.Interfaces.ActiveMQ", "CarrierPidgeon.Interfaces.ActiveMQ\CarrierPidgeon.Interfaces.ActiveMQ.csproj", "{71BFCEB5-5A1B-43D6-B07A-0819070C45CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierPidgeon.Proto", "CarrierPidgeon.Proto\CarrierPidgeon.Proto.csproj", "{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,18 @@ Global
 		{71BFCEB5-5A1B-43D6-B07A-0819070C45CA}.Release|x64.Build.0 = Release|Any CPU
 		{71BFCEB5-5A1B-43D6-B07A-0819070C45CA}.Release|x86.ActiveCfg = Release|Any CPU
 		{71BFCEB5-5A1B-43D6-B07A-0819070C45CA}.Release|x86.Build.0 = Release|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Debug|x64.Build.0 = Debug|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Debug|x86.Build.0 = Debug|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Release|x64.ActiveCfg = Release|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Release|x64.Build.0 = Release|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Release|x86.ActiveCfg = Release|Any CPU
+		{B3CBCD21-43FB-4AD5-9D1B-58593D0202C5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
