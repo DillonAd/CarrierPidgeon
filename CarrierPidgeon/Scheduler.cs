@@ -5,10 +5,10 @@ namespace CarrierPidgeon
 {
     public class Scheduler : IScheduler
     {
-        public IEnumerable<BatchDrivenInterface> Interfaces => _interfaces;
-        private List<BatchDrivenInterface> _interfaces { get; set; }
+        public IEnumerable<IBatchDriven> Interfaces => _interfaces;
+        private List<IBatchDriven> _interfaces { get; set; }
 
-        public void Add(BatchDrivenInterface batchDrivenInterface)
+        public void Add(IBatchDriven batchDrivenInterface)
         {
             _interfaces.Add(batchDrivenInterface);
         }

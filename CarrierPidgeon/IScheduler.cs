@@ -6,9 +6,9 @@ namespace CarrierPidgeon
 {
     public interface IScheduler : IDisposable
     {
-        IEnumerable<BatchDrivenInterface> Interfaces { get; }
+        IEnumerable<IBatchDriven> Interfaces { get; }
 
-        void Add(BatchDrivenInterface batchDrivenInterface);
+        void Add(IBatchDriven batchDrivenInterface);
         void Start();
     }
 }

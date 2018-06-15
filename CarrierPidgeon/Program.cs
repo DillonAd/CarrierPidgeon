@@ -19,16 +19,16 @@ namespace CarrierPidgeon
             foreach(string dllFile in dllFiles)
             {
                 assembly = Assembly.LoadFile(dllFile);
-                var types = assembly.GetTypes().Where(t => t.IsAssignableFrom(typeof(BatchDrivenInterface))
+                var types = assembly.GetTypes().Where(t => t.IsAssignableFrom(typeof(IBatchDriven))
                     && !t.IsInterface
                     && !t.IsAbstract).ToList();
 
                 foreach(var type in types)
                 {
-                    if(type.IsAssignableFrom(typeof(BatchDrivenInterface)))
+                    if(type.IsAssignableFrom(typeof(IBatchDriven)))
                     {
                         var obj = Activator.CreateInstance(type);
-                        ((BatchDrivenInterface)obj).Execute();
+                        ((IBatchDriven)obj).Execute();
                     }
                 }
             }
