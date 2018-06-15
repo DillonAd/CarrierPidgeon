@@ -29,8 +29,8 @@ namespace CarrierPidgeon.Interfaces.ActiveMQ
 
         public void OnMessage<IMessage>(IMessage message)
         {
-            ITextMessage msg = (ITextMessage)message;
-            var eventMessage = new EventMessage(msg.Text);
+            IObjectMessage msg = message as IObjectMessage;
+            var eventMessage = new EventMessage(msg.Body);
 
             MessageReceived(eventMessage);
         }
