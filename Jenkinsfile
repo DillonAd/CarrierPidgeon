@@ -6,7 +6,7 @@ pipeline {
             steps {
                 checkout scm
                 sh 'dotnet /opt/sonarscanner-msbuild/SonarScanner.MSBuild.dll begin /k:"carrierPidgeon"'
-                sh 'dotnet build ./CarrierPidgeon/CarrierPidgeon.csproj --output ./out'
+                sh 'dotnet build ./CarrierPidgeon.sln --output ./out'
                 sh 'dotnet /opt/sonarscanner-msbuild/SonarScanner.MSBuild.dll end'
                 stash "${BUILD_NUMBER}"
             }
