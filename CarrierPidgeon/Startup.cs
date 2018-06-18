@@ -24,7 +24,7 @@ namespace CarrierPidgeon
             foreach (string dllFile in _fileHandler.GetDllFiles())
             {
                 assembly = Assembly.LoadFile(dllFile);
-                var types = assembly.GetTypes().Where(t => t.IsAssignableFrom(typeof(IBatchDriven))
+                var types = assembly.GetTypes().Where(t => t.IsAssignableFrom(typeof(IInterfaceComponent))
                     && !t.IsInterface
                     && !t.IsAbstract).ToList();
 
