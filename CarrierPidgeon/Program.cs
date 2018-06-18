@@ -10,28 +10,7 @@ namespace CarrierPidgeon
     {
         static void Main(string[] args)
         {
-            string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string[] dllFiles = Directory.GetFiles(assemblyFolder, "*.dll");
-
-            Assembly assembly;
-            IScheduler batchedInterfaceCollection = new Scheduler();
-
-            foreach(string dllFile in dllFiles)
-            {
-                assembly = Assembly.LoadFile(dllFile);
-                var types = assembly.GetTypes().Where(t => t.IsAssignableFrom(typeof(IBatchDriven))
-                    && !t.IsInterface
-                    && !t.IsAbstract).ToList();
-
-                foreach(var type in types)
-                {
-                    if(type.IsAssignableFrom(typeof(IBatchDriven)))
-                    {
-                        var obj = Activator.CreateInstance(type);
-                        ((IBatchDriven)obj).Execute();
-                    }
-                }
-            }
+            
         }
     }
 }
