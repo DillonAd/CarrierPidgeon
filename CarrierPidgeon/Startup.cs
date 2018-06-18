@@ -1,6 +1,7 @@
 ﻿using CarrierPidgeon.Core;
 using CarrierPidgeon.Files;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -10,11 +11,13 @@ namespace CarrierPidgeon
     {
         private readonly IFileHandler _fileHandler;
         private readonly IScheduler _scheduler;
+        private readonly IEventDrivenInterfaceManager _eventDrivenInterfaceManager;
 
-        public Startup(IFileHandler fileHandler, IScheduler scheduler)
+        public Startup(IFileHandler fileHandler, IScheduler scheduler, IEventDrivenInterfaceManager eventDrivenInterfaceManager)
         {
             _fileHandler = fileHandler;
             _scheduler = scheduler;
+            _eventDrivenInterfaceManager = eventDrivenInterfaceManager;
         }
 
         public void Start()
@@ -28,20 +31,36 @@ namespace CarrierPidgeon
                     && !t.IsInterface
                     && !t.IsAbstract).ToList();
 
-                foreach (var type in types)
-                {
-                    if (type.IsAssignableFrom(typeof(IBatchDriven)))
-                    {
-                        var batchedInterface = (IBatchDriven)Activator.CreateInstance(type);
-                        _scheduler.Add(batchedInterface);
-                    }
-                }
+                AddTypes(types);
             }
+
+            _eventDrivenInterfaceManager.Start();
+            _scheduler.Start();
         }
 
         public void Dispose()
         {
             _scheduler.Dispose();
+        }
+
+        private void AddTypes(IEnumerable<Type> types)
+        {
+            IBatchDriven batchDrivenInterface;
+            IEventDriven eventDriveInterface;
+
+            foreach (var type in types)
+            {
+                if (type.IsAssignableFrom(typeof(IBatchDriven)))
+                {
+                    batchDrivenInterface = (IBatchDriven)Activator.CreateInstance(type);
+                    _scheduler.Add(batchDrivenInterface);
+                }
+                else if (type.IsAssignableFrom(typeof(IEventDriven)))
+                {
+                    eventDriveInterface = (IEventDriven)Activator.CreateInstance(type);
+                    _eventDrivenInterfaceManager.Add(eventDriveInterface);
+                }
+            }
         }
     }
 }
