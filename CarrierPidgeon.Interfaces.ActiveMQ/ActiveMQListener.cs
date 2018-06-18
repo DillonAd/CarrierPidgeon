@@ -7,23 +7,15 @@ namespace CarrierPidgeon.Interfaces.ActiveMQ
 {
     public class ActiveMQListener : IEventDrivenReceiver
     {
-        private readonly IConnection _connection;
-        private readonly ISession _session;
-        private readonly IDestination _destination;
-        
-        private IMessageConsumer _consumer;
+        private readonly IInterfaceConnection _connection;
+        private readonly IMessageConsumer _consumer;
 
         public event OnMessageReceived MessageReceived;
 
-        public ActiveMQListener(Uri uri, string destinationName) : this(uri, destinationName, string.Empty, string.Empty) { }
-
-        public ActiveMQListener(Uri uri, string destinationName, string userName, string password)
+        public ActiveMQListener(IActiveMQConnection connection)
         {
-            var connectionFactory = NMSConnectionFactory.CreateConnectionFactory(uri);
-            _connection = connectionFactory.CreateConnection(userName, password);
-            _session = _connection.CreateSession();
-            _destination = _session.GetDestination(destinationName);
-            _consumer = _session.CreateConsumer(_destination);
+            _connection = connection;
+            _consumer = connection.GetConsumer();
             _consumer.Listener += OnMessage;
         }
 
@@ -38,8 +30,6 @@ namespace CarrierPidgeon.Interfaces.ActiveMQ
         public void Dispose()
         {
             _consumer.Dispose();
-            _destination.Dispose();
-            _session.Dispose();
             _connection.Dispose();
         }
     }

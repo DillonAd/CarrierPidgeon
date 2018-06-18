@@ -2,8 +2,5 @@
 
 namespace CarrierPidgeon.Core
 {
-    public interface IInterfaceComponent : IDisposable
-    {
-        IInterfaceConnection Connection { get; }
-    }
+    public interface IInterfaceComponent : IDisposable { }
 }
