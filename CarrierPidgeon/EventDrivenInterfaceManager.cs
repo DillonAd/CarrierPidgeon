@@ -8,25 +8,15 @@ namespace CarrierPidgeon
         public IEnumerable<IEventDriven> Interfaces => _interfaces;
         private readonly List<IEventDriven> _interfaces;
 
-        public void Add(IEventDriven @interface)
+        public EventDrivenInterfaceManager()
         {
-            _interfaces.Add(@interface);
+            _interfaces = new List<IEventDriven>();
         }
 
-        public void Start()
-        {
-            foreach(var @interface in _interfaces)
-            {
-                @interface.Start();
-            }
-        }
+        public void Add(IEventDriven @interface) => _interfaces.Add(@interface);
 
-        public void Dispose()
-        {
-            foreach (var @interface in _interfaces)
-            {
-                @interface.Dispose();
-            }
-        }
+        public void Start() => _interfaces.ForEach(i => i.Start());
+
+        public void Dispose() => _interfaces.ForEach(i => i.Dispose());
     }
 }
