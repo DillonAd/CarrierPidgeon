@@ -1,7 +1,6 @@
 ﻿using Apache.NMS;
 using CarrierPidgeon.Core;
 using CarrierPidgeon.Core.Events;
-using System;
 
 namespace CarrierPidgeon.Interfaces.ActiveMQ
 {

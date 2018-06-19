@@ -16,9 +16,9 @@ namespace CarrierPidgeon.Interfaces.ActiveMQ
             _producer = connection.GetProducer();
         }
 
-        public void SendMessage(EventMessage eventMessage)
+        public void SendMessage(EventMessage message)
         {
-            var msg = ((IActiveMQConnection)_connection).CreateObjectMessage(eventMessage);
+            var msg = ((IActiveMQConnection)_connection).CreateObjectMessage(message);
             _producer.Send(msg);
         }
 
