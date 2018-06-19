@@ -9,6 +9,11 @@ namespace CarrierPidgeon
         public IEnumerable<IBatchDriven> Interfaces => _interfaces;
         private List<IBatchDriven> _interfaces { get; set; }
 
+        public Scheduler()
+        {
+            _interfaces = new List<IBatchDriven>();
+        }
+
         public void Add(IBatchDriven batchDrivenInterface)
         {
             _interfaces.Add(batchDrivenInterface);
