@@ -10,10 +10,10 @@ namespace CarrierPidgeon
     public sealed class Startup : IStartup
     {
         private readonly IFileHandler _fileHandler;
-        private readonly IScheduler _scheduler;
+        private readonly IBatchDrivenInterfaceManager _scheduler;
         private readonly IEventDrivenInterfaceManager _eventDrivenInterfaceManager;
 
-        public Startup(IFileHandler fileHandler, IScheduler scheduler, IEventDrivenInterfaceManager eventDrivenInterfaceManager)
+        public Startup(IFileHandler fileHandler, IBatchDrivenInterfaceManager scheduler, IEventDrivenInterfaceManager eventDrivenInterfaceManager)
         {
             _fileHandler = fileHandler;
             _scheduler = scheduler;

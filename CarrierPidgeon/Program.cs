@@ -8,7 +8,7 @@ namespace CarrierPidgeon
         static void Main(string[] args)
         {
             var serviceProvider = new ServiceCollection()
-                .AddTransient<IScheduler, Scheduler>()
+                .AddTransient<IBatchDrivenInterfaceManager, BatchDrivenInterfaceManager>()
                 .AddTransient<IFileHandler, FileHandler>()
                 .AddTransient<IStartup, Startup>()
                 .BuildServiceProvider();

@@ -4,12 +4,12 @@ using CarrierPidgeon.Core;
 
 namespace CarrierPidgeon
 {
-    public sealed class Scheduler : IScheduler
+    public sealed class BatchDrivenInterfaceManager : IBatchDrivenInterfaceManager
     {
         public IEnumerable<IBatchDriven> Interfaces => _interfaces;
         private List<IBatchDriven> _interfaces { get; set; }
 
-        public Scheduler()
+        public BatchDrivenInterfaceManager()
         {
             _interfaces = new List<IBatchDriven>();
         }

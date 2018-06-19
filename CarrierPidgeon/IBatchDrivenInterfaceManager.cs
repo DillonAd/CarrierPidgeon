@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CarrierPidgeon
 {
-    public interface IScheduler : IDisposable
+    public interface IBatchDrivenInterfaceManager : IDisposable
     {
         IEnumerable<IBatchDriven> Interfaces { get; }
 
