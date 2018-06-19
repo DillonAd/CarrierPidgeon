@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using CarrierPidgeon.Core;
 
 namespace CarrierPidgeon
@@ -8,6 +10,9 @@ namespace CarrierPidgeon
     {
         public IEnumerable<IBatchDriven> Interfaces => _interfaces;
         private List<IBatchDriven> _interfaces { get; set; }
+
+        private bool _isDisposed;
+        private Task _runner;
 
         public BatchDrivenInterfaceManager()
         {
@@ -21,18 +26,32 @@ namespace CarrierPidgeon
 
         public void Start()
         {
-            foreach(var @interface in Interfaces)
+            _runner = Task.Run(() => Run());
+        }
+
+        private void Run()
+        {
+            while (!_isDisposed)
             {
-                if (DateTime.Now >= @interface.NextExecutionTime && @interface.IsExecuting)
+                foreach (var @interface in Interfaces)
                 {
-                    @interface.Execute();
+                    if (DateTime.Now >= @interface.NextExecutionTime && @interface.IsExecuting)
+                    {
+                        Task.Run(() => @interface.Execute());
+                    }
                 }
+
+                Thread.Sleep(1000);
             }
         }
 
         public void Dispose()
         {
-            throw new System.NotImplementedException();
+            _isDisposed = true;
+            
+            while (!_runner.GetAwaiter().IsCompleted) { }
+
+            _interfaces.ForEach(bdi => bdi.Dispose());
         }
     }
 }
