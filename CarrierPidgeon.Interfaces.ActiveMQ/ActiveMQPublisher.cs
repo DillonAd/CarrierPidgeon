@@ -22,9 +22,16 @@ namespace CarrierPidgeon.Interfaces.ActiveMQ
             _producer.Send(msg);
         }
 
-        public virtual void Dispose()
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             _producer.Dispose();
+            _connection.Dispose();
         }
     }
 }

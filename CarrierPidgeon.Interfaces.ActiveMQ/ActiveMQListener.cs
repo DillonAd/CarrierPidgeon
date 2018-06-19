@@ -1,6 +1,7 @@
 ﻿using Apache.NMS;
 using CarrierPidgeon.Core;
 using CarrierPidgeon.Core.Events;
+using System;
 
 namespace CarrierPidgeon.Interfaces.ActiveMQ
 {
@@ -18,15 +19,21 @@ namespace CarrierPidgeon.Interfaces.ActiveMQ
             _consumer.Listener += OnMessage;
         }
 
-        public void OnMessage<IMessage>(IMessage message)
+        public void OnMessage<IMessage>(IMessage t)
         {
-            IObjectMessage msg = message as IObjectMessage;
+            IObjectMessage msg = t as IObjectMessage;
             var eventMessage = new EventMessage(msg.Body);
 
             MessageReceived(eventMessage);
         }
 
-        public virtual void Dispose()
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             _consumer.Dispose();
             _connection.Dispose();

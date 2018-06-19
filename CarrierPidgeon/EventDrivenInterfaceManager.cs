@@ -3,7 +3,7 @@ using CarrierPidgeon.Core;
 
 namespace CarrierPidgeon
 {
-    public class EventDrivenInterfaceManager : IEventDrivenInterfaceManager
+    public sealed class EventDrivenInterfaceManager : IEventDrivenInterfaceManager
     {
         public IEnumerable<IEventDriven> Interfaces => _interfaces;
         private readonly List<IEventDriven> _interfaces;
