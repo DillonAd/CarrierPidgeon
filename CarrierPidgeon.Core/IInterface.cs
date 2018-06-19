@@ -1,6 +1,6 @@
 ﻿namespace CarrierPidgeon.Core
 {
-    public interface IInterface<TReceiver, TSender>
+    public interface IInterface<out TReceiver, out TSender>
         where TReceiver : IInterfaceComponent
         where TSender : IInterfaceComponent
     {
