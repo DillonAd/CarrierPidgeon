@@ -3,7 +3,7 @@ using System;
 
 namespace CarrierPidgeon.Interfaces.ActiveMQ
 {
-    public class ActiveMQConnection : IActiveMQConnection
+    public sealed class ActiveMQConnection : IActiveMQConnection
     {
         private readonly IConnection _connection;
         private readonly ISession _session;

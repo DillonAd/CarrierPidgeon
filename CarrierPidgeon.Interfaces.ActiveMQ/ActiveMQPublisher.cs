@@ -22,7 +22,7 @@ namespace CarrierPidgeon.Interfaces.ActiveMQ
             _producer.Send(msg);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _producer.Dispose();
         }

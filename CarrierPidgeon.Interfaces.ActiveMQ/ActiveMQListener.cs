@@ -27,7 +27,7 @@ namespace CarrierPidgeon.Interfaces.ActiveMQ
             MessageReceived(eventMessage);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _consumer.Dispose();
             _connection.Dispose();
