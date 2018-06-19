@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace CarrierPidgeon
 {
-    public class Startup : IStartup
+    public sealed class Startup : IStartup
     {
         private readonly IFileHandler _fileHandler;
         private readonly IScheduler _scheduler;
