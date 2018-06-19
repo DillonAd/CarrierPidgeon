@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CarrierPidgeon.Core;
 
 namespace CarrierPidgeon
@@ -17,7 +18,10 @@ namespace CarrierPidgeon
         {
             foreach(var @interface in Interfaces)
             {
-                @interface.Execute();
+                if (DateTime.Now >= @interface.NextExecutionTime && @interface.IsExecuting)
+                {
+                    @interface.Execute();
+                }
             }
         }
 
