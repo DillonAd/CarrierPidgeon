@@ -1,14 +1,9 @@
-﻿using CarrierPidgeon.Core;
-using CarrierPidgeon.Files;
+﻿using CarrierPidgeon.Files;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 
 namespace CarrierPidgeon
 {
-    class Program
+    public static class Program
     {
         static void Main(string[] args)
         {
