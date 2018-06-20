@@ -1,5 +1,6 @@
 ﻿using CarrierPidgeon.Core;
 using Moq;
+using System;
 using System.Linq;
 using Xunit;
 
@@ -26,19 +27,23 @@ namespace CarrierPidgeon.Test.CarrierPidgeon
         [Trait("Category", "unit")]
         public void ExecuteInterface()
         {
-            //Assemble
-            var mock = new Mock<IBatchDriven>();
-            mock.Setup(i => i.Execute())
-                .Callback(() => mock.SetupGet(p => p.IsExecuting).Returns(true));
+            using (var manager = new BatchDrivenInterfaceManager())
+            {
+                //Assemble
+                var mock = new Mock<IBatchDriven>();
+                mock.SetupGet(p => p.NextExecutionTime)
+                    .Returns(DateTime.Now.AddSeconds(-10000));
+                mock.Setup(i => i.Execute())
+                    .Callback(() => mock.SetupGet(p => p.IsExecuting).Returns(true));
 
-            var manager = new BatchDrivenInterfaceManager();
-            manager.Add(mock.Object);
+                manager.Add(mock.Object);
 
-            //Act
-            manager.Start();
+                //Act
+                manager.Start();
 
-            //Assert
-            Assert.True(manager.Interfaces.FirstOrDefault().IsExecuting);
+                //Assert
+                Assert.True(manager.Interfaces.FirstOrDefault().IsExecuting);
+            }
         }
     }
 }
