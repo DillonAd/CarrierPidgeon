@@ -2,6 +2,7 @@
 using Moq;
 using System;
 using System.Linq;
+using System.Threading;
 using Xunit;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon
@@ -42,6 +43,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon
                 manager.Start();
 
                 //Assert
+                Thread.Sleep(1000);
                 Assert.True(manager.Interfaces.FirstOrDefault().IsExecuting);
             }
         }

@@ -35,7 +35,7 @@ namespace CarrierPidgeon
             {
                 foreach (var @interface in Interfaces)
                 {
-                    if (DateTime.Now >= @interface.NextExecutionTime && @interface.IsExecuting)
+                    if (DateTime.Now >= @interface.NextExecutionTime && !@interface.IsExecuting)
                     {
                         Task.Run(() => @interface.Execute());
                     }
