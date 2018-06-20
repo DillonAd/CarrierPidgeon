@@ -1,5 +1,4 @@
-﻿using CarrierPidgeon.Files;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace CarrierPidgeon
 {
@@ -9,7 +8,6 @@ namespace CarrierPidgeon
         {
             var serviceProvider = new ServiceCollection()
                 .AddTransient<IBatchDrivenInterfaceManager, BatchDrivenInterfaceManager>()
-                .AddTransient<IFileHandler, FileHandler>()
                 .AddTransient<IStartup, Startup>()
                 .BuildServiceProvider();
 
