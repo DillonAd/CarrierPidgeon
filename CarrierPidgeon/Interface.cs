@@ -21,8 +21,8 @@ namespace CarrierPidgeon
 
             Type = assembly.ExportedTypes.FirstOrDefault(t => !t.IsAbstract && 
                 !t.IsInterface && 
-                (t.IsAssignableFrom(typeof(IBatchDriven<IInterfaceComponent, IInterfaceComponent>)) || 
-                t.IsAssignableFrom(typeof(IEventDriven<IInterfaceComponent, IInterfaceComponent>))));
+                (t.IsAssignableFrom(typeof(IBatchDriven<ISender, IReceiver>)) || 
+                t.IsAssignableFrom(typeof(IEventDriven<ISender, IEventDrivenReceiver>))));
         }
     }
 }

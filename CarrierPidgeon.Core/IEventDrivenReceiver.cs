@@ -2,7 +2,7 @@
 
 namespace CarrierPidgeon.Core
 {
-    public interface IEventDrivenReceiver : IInterfaceComponent, IReceiver
+    public interface IEventDrivenReceiver : IReceiver
     {
         event OnMessageReceived MessageReceived;
     }

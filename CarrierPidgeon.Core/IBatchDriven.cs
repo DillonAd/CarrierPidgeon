@@ -3,8 +3,8 @@
 namespace CarrierPidgeon.Core
 {
     public interface IBatchDriven<TSender, TReceiver> : IInterface<TSender, TReceiver>
-        where TSender : IInterfaceComponent
-        where TReceiver : IInterfaceComponent
+        where TSender : ISender
+        where TReceiver : IReceiver
     {
         DateTime NextExecutionTime { get; }
         int IntervalMilliseconds { get; }
