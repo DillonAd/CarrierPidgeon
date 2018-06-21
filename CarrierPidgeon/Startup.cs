@@ -1,47 +1,60 @@
 ﻿using CarrierPidgeon.Core;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace CarrierPidgeon
 {
     public sealed class Startup : IStartup
     {
-        private readonly IBatchDrivenInterfaceManager _scheduler;
+        private readonly IBatchDrivenInterfaceManager _batchDrivenInterfaceManager;
         private readonly IEventDrivenInterfaceManager _eventDrivenInterfaceManager;
 
-        public Startup(IBatchDrivenInterfaceManager scheduler, IEventDrivenInterfaceManager eventDrivenInterfaceManager)
+        public Startup(IBatchDrivenInterfaceManager batchDrivenInterfaceManager, IEventDrivenInterfaceManager eventDrivenInterfaceManager)
         {
-            _scheduler = scheduler;
+            _batchDrivenInterfaceManager = batchDrivenInterfaceManager;
             _eventDrivenInterfaceManager = eventDrivenInterfaceManager;
         }
 
         public void Start()
         {
+            var path = Assembly.GetExecutingAssembly().Location;
+            var dllFiles = Directory.GetFiles(path, "*.dll");
+
+            List<Interface> interfaces = new List<Interface>();
+
+            foreach (var file in dllFiles)
+            {
+                interfaces.Add(new Interface(file));
+            }
+
+            AddInterfaces(interfaces);
 
             _eventDrivenInterfaceManager.Start();
-            _scheduler.Start();
+            _batchDrivenInterfaceManager.Start();
         }
 
         public void Dispose()
         {
-            _scheduler.Dispose();
+            _batchDrivenInterfaceManager.Dispose();
         }
 
-        private void AddTypes(IEnumerable<Type> types)
+        private void AddInterfaces(IEnumerable<Interface> interfaces)
         {
             IBatchDriven batchDrivenInterface;
             IEventDriven eventDriveInterface;
 
-            foreach (var type in types)
+            foreach (var @interface in interfaces)
             {
-                if (type.IsAssignableFrom(typeof(IBatchDriven)))
+                if (@interface.Type.IsAssignableFrom(typeof(IBatchDriven)))
                 {
-                    batchDrivenInterface = (IBatchDriven)Activator.CreateInstance(type);
-                    _scheduler.Add(batchDrivenInterface);
+                    batchDrivenInterface = (IBatchDriven)@interface.Instance;
+                    _batchDrivenInterfaceManager.Add(batchDrivenInterface);
                 }
-                else if (type.IsAssignableFrom(typeof(IEventDriven)))
+                else if (@interface.Type.IsAssignableFrom(typeof(IEventDriven)))
                 {
-                    eventDriveInterface = (IEventDriven)Activator.CreateInstance(type);
+                    eventDriveInterface = (IEventDriven)@interface.Instance;
                     _eventDrivenInterfaceManager.Add(eventDriveInterface);
                 }
             }
