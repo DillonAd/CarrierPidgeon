@@ -1,17 +1,13 @@
 ﻿using CarrierPidgeon.Core;
 using System;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace CarrierPidgeon
+namespace CarrierPidgeon.InterfaceLoad
 {
     public class Interface
     {
         public Type Type { get; }
-
-        public object Instance => 
-            Activator.CreateInstance(Type);
          
 
         public Interface(string path)
@@ -24,5 +20,8 @@ namespace CarrierPidgeon
                 (t.IsAssignableFrom(typeof(IBatchDriven<ISender, IReceiver>)) || 
                 t.IsAssignableFrom(typeof(IEventDriven<ISender, IEventDrivenReceiver>))));
         }
+
+        public T CreateInstance<T>() =>
+            (T)Activator.CreateInstance(Type);
     }
 }

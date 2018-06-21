@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CarrierPidgeon.Core.Events
+﻿namespace CarrierPidgeon.Core.Events
 {
     public class EventMessage
     {

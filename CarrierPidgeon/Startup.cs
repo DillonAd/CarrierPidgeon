@@ -1,5 +1,7 @@
-﻿using CarrierPidgeon.Core;
-using System;
+﻿using CarrierPidgeon.BatchDriven;
+using CarrierPidgeon.Core;
+using CarrierPidgeon.EventDriven;
+using CarrierPidgeon.InterfaceLoad;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -49,12 +51,12 @@ namespace CarrierPidgeon
             {
                 if (@interface.Type.IsAssignableFrom(typeof(IBatchDriven<ISender, IReceiver>)))
                 {
-                    batchDrivenInterface = (IBatchDriven<ISender, IReceiver>)@interface.Instance;
+                    batchDrivenInterface = @interface.CreateInstance<IBatchDriven<ISender, IReceiver>>();
                     _batchDrivenInterfaceManager.Add(batchDrivenInterface);
                 }
                 else if (@interface.Type.IsAssignableFrom(typeof(IEventDriven<ISender, IEventDrivenReceiver>)))
                 {
-                    eventDrivenInterface = (IEventDriven<ISender, IEventDrivenReceiver>)@interface.Instance;
+                    eventDrivenInterface = @interface.CreateInstance<IEventDriven<ISender, IEventDrivenReceiver>>();
                     _eventDrivenInterfaceManager.Add(eventDrivenInterface);
                 }
             }

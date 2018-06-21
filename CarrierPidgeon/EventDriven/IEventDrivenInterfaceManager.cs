@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CarrierPidgeon
+namespace CarrierPidgeon.EventDriven
 {
     public interface IEventDrivenInterfaceManager : IDisposable
     {

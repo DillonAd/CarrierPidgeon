@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CarrierPidgeon
+namespace CarrierPidgeon.BatchDriven
 {
     public interface IBatchDrivenInterfaceManager : IDisposable
     {

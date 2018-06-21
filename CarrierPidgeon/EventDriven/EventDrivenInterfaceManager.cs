@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CarrierPidgeon.Core;
 
-namespace CarrierPidgeon
+namespace CarrierPidgeon.EventDriven
 {
     public sealed class EventDrivenInterfaceManager : IEventDrivenInterfaceManager
     {

@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CarrierPidgeon.Core;
 
-namespace CarrierPidgeon
+namespace CarrierPidgeon.BatchDriven
 {
     public sealed class BatchDrivenInterfaceManager : IBatchDrivenInterfaceManager
     {
