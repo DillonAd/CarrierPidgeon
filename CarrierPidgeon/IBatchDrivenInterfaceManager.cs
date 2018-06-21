@@ -6,9 +6,9 @@ namespace CarrierPidgeon
 {
     public interface IBatchDrivenInterfaceManager : IDisposable
     {
-        IEnumerable<IBatchDriven> Interfaces { get; }
+        IEnumerable<IBatchDriven<IInterfaceComponent, IInterfaceComponent>> Interfaces { get; }
 
-        void Add(IBatchDriven batchDrivenInterface);
+        void Add(IBatchDriven<IInterfaceComponent, IInterfaceComponent> batchDrivenInterface);
         void Start();
     }
 }

@@ -14,7 +14,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon
         public void AddInterface()
         {
             //Assemble
-            var bdi = new Mock<IBatchDriven>().Object;
+            var bdi = new Mock<IBatchDriven<IInterfaceComponent, IInterfaceComponent>>().Object;
             var manager = new BatchDrivenInterfaceManager();
 
             //Act
@@ -31,7 +31,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon
             using (var manager = new BatchDrivenInterfaceManager())
             {
                 //Assemble
-                var mock = new Mock<IBatchDriven>();
+                var mock = new Mock<IBatchDriven<IInterfaceComponent, IInterfaceComponent>>();
                 mock.SetupGet(p => p.NextExecutionTime)
                     .Returns(DateTime.Now.AddSeconds(-10000));
                 mock.Setup(i => i.Execute())
@@ -55,7 +55,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon
             using (var manager = new BatchDrivenInterfaceManager())
             {
                 //Assemble
-                var mock = new Mock<IBatchDriven>();
+                var mock = new Mock<IBatchDriven<IInterfaceComponent, IInterfaceComponent>>();
                 mock.SetupGet(p => p.NextExecutionTime)
                     .Returns(DateTime.Now.AddSeconds(10000));
                 mock.Setup(i => i.Execute())

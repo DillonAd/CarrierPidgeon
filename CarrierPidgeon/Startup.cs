@@ -42,20 +42,20 @@ namespace CarrierPidgeon
 
         private void AddInterfaces(IEnumerable<Interface> interfaces)
         {
-            IBatchDriven batchDrivenInterface;
-            IEventDriven eventDriveInterface;
+            IBatchDriven<IInterfaceComponent, IInterfaceComponent> batchDrivenInterface;
+            IEventDriven<IInterfaceComponent, IInterfaceComponent> eventDrivenInterface;
 
             foreach (var @interface in interfaces)
             {
-                if (@interface.Type.IsAssignableFrom(typeof(IBatchDriven)))
+                if (@interface.Type.IsAssignableFrom(typeof(IBatchDriven<IInterfaceComponent, IInterfaceComponent>)))
                 {
-                    batchDrivenInterface = (IBatchDriven)@interface.Instance;
+                    batchDrivenInterface = (IBatchDriven<IInterfaceComponent, IInterfaceComponent>)@interface.Instance;
                     _batchDrivenInterfaceManager.Add(batchDrivenInterface);
                 }
-                else if (@interface.Type.IsAssignableFrom(typeof(IEventDriven)))
+                else if (@interface.Type.IsAssignableFrom(typeof(IEventDriven<IInterfaceComponent, IInterfaceComponent>)))
                 {
-                    eventDriveInterface = (IEventDriven)@interface.Instance;
-                    _eventDrivenInterfaceManager.Add(eventDriveInterface);
+                    eventDrivenInterface = (IEventDriven<IInterfaceComponent, IInterfaceComponent>)@interface.Instance;
+                    _eventDrivenInterfaceManager.Add(eventDrivenInterface);
                 }
             }
         }
