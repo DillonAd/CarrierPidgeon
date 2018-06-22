@@ -24,7 +24,7 @@ pipeline {
                     stash "${BUILD_NUMBER}"
                 }
             }
-            catch {
+            catch (ex) {
                 throw
             }
             finally {
