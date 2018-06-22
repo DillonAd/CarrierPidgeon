@@ -25,7 +25,7 @@ pipeline {
                 }
             }
             catch (ex) {
-                throw
+                throw ex
             }
             finally {
                 sh 'dotnet /opt/sonarscanner-msbuild/SonarScanner.MSBuild.dll end'
