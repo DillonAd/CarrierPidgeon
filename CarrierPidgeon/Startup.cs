@@ -10,25 +10,35 @@ namespace CarrierPidgeon
 {
     public sealed class Startup : IStartup
     {
+        public IEnumerable<IBatchDriven<ISender, IReceiver>> BatchDrivenInterfaces => _batchDrivenInterfaceManager.Interfaces;
+        public IEnumerable<IEventDriven<ISender, IEventDrivenReceiver>> EventDrivenInterfaces => _eventDrivenInterfaceManager.Interfaces;
+
         private readonly IBatchDrivenInterfaceManager _batchDrivenInterfaceManager;
         private readonly IEventDrivenInterfaceManager _eventDrivenInterfaceManager;
+        private readonly IFileSystem _fileSystem;
+        private readonly IAssemblyInfo _assemblyInfo;
 
-        public Startup(IBatchDrivenInterfaceManager batchDrivenInterfaceManager, IEventDrivenInterfaceManager eventDrivenInterfaceManager)
+        public Startup(
+            IBatchDrivenInterfaceManager batchDrivenInterfaceManager,
+            IEventDrivenInterfaceManager eventDrivenInterfaceManager,
+            IFileSystem fileSystem,
+            IAssemblyInfo assemblyInfo)
         {
             _batchDrivenInterfaceManager = batchDrivenInterfaceManager;
             _eventDrivenInterfaceManager = eventDrivenInterfaceManager;
+            _fileSystem = fileSystem;
+            _assemblyInfo = assemblyInfo;
         }
 
         public void Start()
         {
-            var path = Assembly.GetExecutingAssembly().Location;
-            var dllFiles = Directory.GetFiles(path, "*.dll");
-
-            List<Interface> interfaces = new List<Interface>();
+            var dllFiles = _fileSystem.GetDllFiles();
+            var interfaces = new List<Interface>();
 
             foreach (var file in dllFiles)
             {
-                interfaces.Add(new Interface(file));
+                var type = _assemblyInfo.GetInterfaceType(file);
+                interfaces.Add(new Interface(type));
             }
 
             AddInterfaces(interfaces);

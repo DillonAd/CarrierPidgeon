@@ -8,17 +8,15 @@ namespace CarrierPidgeon.InterfaceLoad
     public class Interface
     {
         public Type Type { get; }
-         
 
-        public Interface(string path)
+        public Interface(Type type)
         {
-            var assemblyName = AssemblyName.GetAssemblyName(path);
-            var assembly = Assembly.Load(assemblyName);
+            Type = type;
 
-            Type = assembly.ExportedTypes.FirstOrDefault(t => !t.IsAbstract && 
-                !t.IsInterface && 
-                (t.IsAssignableFrom(typeof(IBatchDriven<ISender, IReceiver>)) || 
-                t.IsAssignableFrom(typeof(IEventDriven<ISender, IEventDrivenReceiver>))));
+            if(!Type.IsAssignableFrom(typeof(IInterface<ISender, IReceiver>)))
+            {
+                throw new InvalidCastException("Invalid Interface Type");
+            }
         }
 
         public T CreateInstance<T>() =>
