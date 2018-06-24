@@ -14,7 +14,6 @@ namespace CarrierPidgeon.Test.CarrierPidgeon
         {
             //Assemble
             Type type = typeof(TestBatchDrivenInterface);
-            Assert.NotNull(type);
 
             //Act
             var @interface = new Interface(type);
