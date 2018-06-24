@@ -12,8 +12,9 @@ namespace CarrierPidgeon.InterfaceLoad
         public Interface(Type type)
         {
             Type = type;
-
-            if(!Type.IsAssignableFrom(typeof(IInterface<ISender, IReceiver>)))
+                   
+            if(type == null ||
+                !typeof(IBatchDriven<ISender, IReceiver>).IsAssignableFrom(type))
             {
                 throw new InvalidCastException("Invalid Interface Type");
             }
