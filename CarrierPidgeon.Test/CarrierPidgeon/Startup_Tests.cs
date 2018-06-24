@@ -34,5 +34,27 @@ namespace CarrierPidgeon.Test.CarrierPidgeon
             //Assert
             Assert.Single(fixture.BatchDrivenInterfaceManager.Interfaces);
         }
+
+        [Fact]
+        [Trait("Category", "unit")]
+        public void Start_EventDriven_Success()
+        {
+            //Assemble
+            var fixture = new StartupFixture();
+            fixture.AddFile("testfile.dll");
+            fixture.AddType(typeof(TestEventDrivenInterface));
+
+            //Act
+            var startup = new Startup(
+                fixture.BatchDrivenInterfaceManager, 
+                fixture.EventDrivenInterfaceManager,
+                fixture.FileSystem,
+                fixture.AssemblyInfo);
+            
+            startup.Start();
+
+            //Assert
+            Assert.Single(fixture.EventDrivenInterfaceManager.Interfaces);
+        }
     }
 }
