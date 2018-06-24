@@ -9,19 +9,52 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Fixture
 {
     public class StartupDataBuilder
     {
-        public IBatchDrivenInterfaceManager
-        public IStartup Setup()
+        private readonly List<IBatchDriven<ISender, IReceiver>> _batchDrivenInterfaces;
+        private readonly List<IEventDriven<ISender, IEventDrivenReceiver>> _eventDrivenInterfaces;
+
+        private readonly Mock<IBatchDrivenInterfaceManager> _batchDrivenInterfaceManagerMock;
+        public IBatchDrivenInterfaceManager BatchDrivenInterfaceManager => _batchDrivenInterfaceManagerMock.Object;
+
+        private readonly Mock<IEventDrivenInterfaceManager> _eventDrivenInterfaceManagerMock;
+        public IEventDrivenInterfaceManager EventDrivenInterfaceManager => _eventDrivenInterfaceManagerMock.Object;
+
+        private readonly Mock<IFileSystem> _fileSystemMock;
+        public IFileSystem FileSystem => _fileSystemMock.Object;
+
+        private readonly Mock<IAssemblyInfo> _assemblyInfo;
+        public IAssemblyInfo AssemblyInfo => _assemblyInfo.Object;
+
+        public StartupDataBuilder()
         {
             var batchDrivenInterfaceManagerMock = new Mock<IBatchDrivenInterfaceManager>();
             var eventDrivenInterfaceManagerMock = new Mock<IEventDrivenInterfaceManager>();
             var fileSystemMock = new Mock<IFileSystem>();
             var assemblyInfoMock = new Mock<IAssemblyInfo>();
 
-            var batchDrivenInterfaceCollection = new List<IBatchDriven<ISender, IReceiver>>();
-            batchDrivenInterfaceManagerMock
+            _batchDrivenInterfaceManagerMock
                 .Setup(b => b.Add(It.IsAny<IBatchDriven<ISender, IReceiver>>()))
-                .Callback((IBatchDriven<ISender, IReceiver> bd) => batchDrivenInterfaceCollection.Add(bd));
+                .Callback((IBatchDriven<ISender, IReceiver> bd) => _batchDrivenInterfaces.Add(batchDrivenInterface));
+            
 
+
+        }
+
+        public StartupDataBuilder AddBatchDrivenInterface(IBatchDriven<ISender, IReceiver> batchDrivenInterface)
+        {
+            
+            return this;
+        }
+
+        public StartupDataBuilder AddEventDrivenInterface(IEventDriven<ISender, IEventDrivenReceiver> eventDrivenInterface)
+        {
+    
+        }
+
+        public IStartup Setup()
+        {
+            
+
+            
             var eventDrivenInterfaceCollection = new List<IEventDriven<ISender, IEventDrivenReceiver>>();
             eventDrivenInterfaceManagerMock
                 .Setup(b => b.Add(It.IsAny<IEventDriven<ISender, IEventDrivenReceiver>>()))
