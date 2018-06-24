@@ -29,7 +29,8 @@ pipeline {
                     unstash "${BUILD_NUMBER}"
                     try
                     { 
-                        sh 'dotnet test ./CarrierPidgeon.Test/CarrierPidgeon.Test.csproj --filter Category=unit --logger "trx;LogFileName=results\\tests_unit.xml" --collect "Code Coverage" --no-build'
+                        sh "dotnet test ./CarrierPidgeon.sln --logger \"trx;LogFileName=unit_tests.xml\" --no-build"
+            			step([$class: 'MSTestPublisher', testResultsFile:"**/unit_tests.xml", failOnError: true, keepLongStdio: true])
                     } finally {
                         sh 'dotnet /opt/sonarscanner-msbuild/SonarScanner.MSBuild.dll end'
                     }
