@@ -59,12 +59,12 @@ namespace CarrierPidgeon
 
             foreach (var @interface in interfaces)
             {
-                if (@interface.Type.IsAssignableFrom(typeof(IBatchDriven<ISender, IReceiver>)))
+                if (typeof(IBatchDriven<ISender, IReceiver>).IsAssignableFrom(@interface.Type))
                 {
                     batchDrivenInterface = @interface.CreateInstance<IBatchDriven<ISender, IReceiver>>();
                     _batchDrivenInterfaceManager.Add(batchDrivenInterface);
                 }
-                else if (@interface.Type.IsAssignableFrom(typeof(IEventDriven<ISender, IEventDrivenReceiver>)))
+                else if (typeof(IEventDriven<ISender, IEventDrivenReceiver>).IsAssignableFrom(@interface.Type))
                 {
                     eventDrivenInterface = @interface.CreateInstance<IEventDriven<ISender, IEventDrivenReceiver>>();
                     _eventDrivenInterfaceManager.Add(eventDrivenInterface);

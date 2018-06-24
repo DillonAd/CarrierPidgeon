@@ -14,7 +14,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Fixtures
         private readonly List<IBatchDriven<ISender, IReceiver>> _batchDrivenInterfaces;
         private readonly List<IEventDriven<ISender, IEventDrivenReceiver>> _eventDrivenInterfaces;
         private readonly List<string> _files;
-        private readonly List<Type> _types;
+        public readonly List<Type> _types;
 
         private readonly Mock<IBatchDrivenInterfaceManager> _batchDrivenInterfaceManagerMock;
         public IBatchDrivenInterfaceManager BatchDrivenInterfaceManager => _batchDrivenInterfaceManagerMock.Object;
@@ -59,7 +59,9 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Fixtures
             _fileSystemMock.Setup(fs => fs.GetDllFiles()).Returns(_files);
 
             _assemblyInfoMock.Setup(ai => ai.GetInterfaceType(It.IsAny<string>()))
-                .Returns(_types.FirstOrDefault());
+                .Returns(() => {
+                    return _types.FirstOrDefault();
+                });
         }
 
         public void AddFile(string fileName) => _files.Add(fileName);
