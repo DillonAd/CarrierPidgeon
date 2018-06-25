@@ -18,7 +18,6 @@ pipeline {
                         sh 'dotnet build ./CarrierPidgeon.sln'
                     } catch(ex) {
                         throw ex
-                    }
                     } finally {
                         sh 'dotnet /opt/sonarscanner-msbuild/SonarScanner.MSBuild.dll end'
                     }
