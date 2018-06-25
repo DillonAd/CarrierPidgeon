@@ -1,0 +1,1 @@
+dotnet watch --project ./CarrierPidgeon.Test/CarrierPidgeon.Test.csproj test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov
