@@ -3,7 +3,7 @@ using CarrierPidgeon.Core;
 using CarrierPidgeon.Core.Events;
 using System;
 
-namespace CarrierPidgeon.Interfaces.ActiveMQ
+namespace CarrierPidgeon.Component.ActiveMQ
 {
     public class ActiveMQListener : IEventDrivenReceiver
     {

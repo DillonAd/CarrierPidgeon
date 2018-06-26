@@ -1,7 +1,7 @@
 ﻿using Apache.NMS;
 using CarrierPidgeon.Core;
 
-namespace CarrierPidgeon.Interfaces.ActiveMQ
+namespace CarrierPidgeon.Component.ActiveMQ
 {
     public interface IActiveMQConnection : IInterfaceConnection
     {
