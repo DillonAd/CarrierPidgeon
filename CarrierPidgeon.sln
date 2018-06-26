@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierPidgeon", "CarrierPi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierPidgeon.Core", "CarrierPidgeon.Core\CarrierPidgeon.Core.csproj", "{64338FBF-D171-400D-9FAD-6D1F5C4B171F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierPidgeon.Interfaces.ActiveMQ", "CarrierPidgeon.Interfaces.ActiveMQ\CarrierPidgeon.Interfaces.ActiveMQ.csproj", "{71BFCEB5-5A1B-43D6-B07A-0819070C45CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierPidgeon.Component.ActiveMQ", "CarrierPidgeon.Component.ActiveMQ\CarrierPidgeon.Component.ActiveMQ.csproj", "{71BFCEB5-5A1B-43D6-B07A-0819070C45CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierPidgeon.Test", "CarrierPidgeon.Test\CarrierPidgeon.Test.csproj", "{5388492D-8851-4536-9336-BEAEFF7D5386}"
 EndProject
