@@ -12,9 +12,14 @@ namespace CarrierPidgeon.Component.SqlServer
             _connection = connection;
         }
 
-        public void Send(EventMessage eventMessage)
+        public void SendMessage(EventMessage message)
         {
 
+        }
+
+        public virtual void Dispose()
+        {
+            _connection.Dispose();
         }
     }
 }

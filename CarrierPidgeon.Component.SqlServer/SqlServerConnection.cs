@@ -1,6 +1,9 @@
+using System;
+using System.Data.SqlClient;
+
 namespace CarrierPidgeon.Component.SqlServer
 {
-    public class SqlServerConnection
+    public sealed class SqlServerConnection : IDisposable
     {
         private readonly SqlConnection _connection;
         public SqlConnection Connection => _connection;
@@ -8,6 +11,11 @@ namespace CarrierPidgeon.Component.SqlServer
         public SqlServerConnection(string connectionString)
         {
             _connection = new SqlConnection(connectionString);
+        }
+
+        public void Dispose()
+        {
+            _connection.Dispose();
         }
     }
 }
