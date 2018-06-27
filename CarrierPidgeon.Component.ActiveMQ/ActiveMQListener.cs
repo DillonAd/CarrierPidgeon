@@ -19,6 +19,7 @@ namespace CarrierPidgeon.Component.ActiveMQ
             _consumer.Listener += OnMessage;
         }
 
+        //TODO this isn't necessary for event driven
         public void OnMessage<IMessage>(IMessage t)
         {
             IObjectMessage msg = t as IObjectMessage;

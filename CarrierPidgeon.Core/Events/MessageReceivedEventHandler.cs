@@ -2,5 +2,5 @@
 
 namespace CarrierPidgeon.Core.Events
 {
-    public delegate EventHandler OnMessageReceived(EventMessage eventMessage);
+    public delegate void OnMessageReceived(EventMessage eventMessage);
 }
