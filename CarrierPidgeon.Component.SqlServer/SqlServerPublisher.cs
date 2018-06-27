@@ -14,7 +14,7 @@ namespace CarrierPidgeon.Component.SqlServer
 
         public void SendMessage(EventMessage message)
         {
-
+            
         }
 
         public virtual void Dispose()
