@@ -37,5 +37,31 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Component.ActiveMQ
             //Assert
             Assert.Single(messages);
         }
+
+        [Fact]
+        [Trait("Category", "unit")]
+        public void SendMessage()
+        {
+            //Assemble
+            var callCount = 0;
+            var producerMock = new Mock<IMessageProducer>();
+            producerMock.Setup(p => p.Send(It.IsAny<IMessage>()))
+                .Callback(() => callCount++);
+
+            var connectionMock = new Mock<IActiveMQConnection>();
+            connectionMock.Setup(c => c.GetProducer())
+                .Returns(producerMock.Object);
+
+            var publisher = new ActiveMQPublisher(connectionMock.Object);
+
+            var message = new EventMessage();
+
+            //Act
+            publisher.SendMessage(message);
+
+            //Assert
+            Assert.Equal(1, callCount);
+
+        }
     }
 }
