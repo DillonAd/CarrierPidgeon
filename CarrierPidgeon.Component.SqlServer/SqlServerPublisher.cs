@@ -1,5 +1,6 @@
 ﻿using CarrierPidgeon.Core;
 using CarrierPidgeon.Core.Events;
+using System;
 
 namespace CarrierPidgeon.Component.SqlServer
 {
@@ -17,7 +18,13 @@ namespace CarrierPidgeon.Component.SqlServer
             
         }
 
-        public virtual void Dispose()
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             _connection.Dispose();
         }
