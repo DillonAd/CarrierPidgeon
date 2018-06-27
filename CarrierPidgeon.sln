@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierPidgeon.Test", "Carr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierPidgeon.Component.SqlServer", "CarrierPidgeon.Component.SqlServer\CarrierPidgeon.Component.SqlServer.csproj", "{55C11F09-8425-45EB-A951-E23D7E239FEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierPidgeon.Component.Oracle", "CarrierPidgeon.Component.Oracle\CarrierPidgeon.Component.Oracle.csproj", "{B152223B-32DA-4B4D-9CE6-44C8714F76DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,18 @@ Global
 		{55C11F09-8425-45EB-A951-E23D7E239FEF}.Release|x64.Build.0 = Release|Any CPU
 		{55C11F09-8425-45EB-A951-E23D7E239FEF}.Release|x86.ActiveCfg = Release|Any CPU
 		{55C11F09-8425-45EB-A951-E23D7E239FEF}.Release|x86.Build.0 = Release|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Debug|x64.Build.0 = Debug|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Debug|x86.Build.0 = Debug|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Release|x64.ActiveCfg = Release|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Release|x64.Build.0 = Release|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Release|x86.ActiveCfg = Release|Any CPU
+		{B152223B-32DA-4B4D-9CE6-44C8714F76DF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
