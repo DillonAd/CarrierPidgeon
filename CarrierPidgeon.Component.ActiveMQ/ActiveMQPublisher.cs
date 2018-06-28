@@ -1,11 +1,11 @@
 ﻿using Apache.NMS;
 using CarrierPidgeon.Core;
-using CarrierPidgeon.Core.Events;
+using CarrierPidgeon.Core.EventDriven;
 using System;
 
 namespace CarrierPidgeon.Component.ActiveMQ
 {
-    public class ActiveMQPublisher : ISender
+    public class ActiveMQPublisher : IEventDrivenSender
     {
         private readonly IInterfaceConnection _connection;
         private readonly IMessageProducer _producer;

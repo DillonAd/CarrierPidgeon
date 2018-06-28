@@ -1,4 +1,4 @@
-﻿namespace CarrierPidgeon.Core.Events
+﻿namespace CarrierPidgeon.Core.EventDriven
 {
     public class EventMessage
     {

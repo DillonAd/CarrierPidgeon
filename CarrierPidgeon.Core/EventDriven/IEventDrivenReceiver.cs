@@ -1,6 +1,4 @@
-﻿using CarrierPidgeon.Core.Events;
-
-namespace CarrierPidgeon.Core
+﻿namespace CarrierPidgeon.Core.EventDriven
 {
     public interface IEventDrivenReceiver : IReceiver
     {
