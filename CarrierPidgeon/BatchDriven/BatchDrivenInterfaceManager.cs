@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using CarrierPidgeon.Core;
+using CarrierPidgeon.Core.BatchDriven;
 
 namespace CarrierPidgeon.BatchDriven
 {
     public sealed class BatchDrivenInterfaceManager : IBatchDrivenInterfaceManager
     {
-        public IEnumerable<IBatchDriven<ISender, IReceiver>> Interfaces => _interfaces;
-        private List<IBatchDriven<ISender, IReceiver>> _interfaces { get; set; }
+        public IEnumerable<IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver>> Interfaces => _interfaces;
+        private List<IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver>> _interfaces { get; set; }
 
         private bool _isDisposed;
         private Task _runner;
 
         public BatchDrivenInterfaceManager()
         {
-            _interfaces = new List<IBatchDriven<ISender, IReceiver>>();
+            _interfaces = new List<IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver>>();
         }
 
-        public void Add(IBatchDriven<ISender, IReceiver> batchDrivenInterface)
+        public void Add(IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver> batchDrivenInterface)
         {
             _interfaces.Add(batchDrivenInterface);
         }

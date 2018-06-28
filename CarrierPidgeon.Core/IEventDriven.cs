@@ -3,7 +3,7 @@
 namespace CarrierPidgeon.Core
 {
     public interface IEventDriven<TSender, TReceiver> : IInterface<TSender, TReceiver>
-        where TSender : ISender
+        where TSender : IEventDrivenSender
         where TReceiver : IEventDrivenReceiver
     {
         bool IsStarted { get; }

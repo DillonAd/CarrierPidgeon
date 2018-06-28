@@ -1,4 +1,5 @@
 ﻿using CarrierPidgeon.Core;
+using CarrierPidgeon.Core.BatchDriven;
 using System;
 using System.Collections.Generic;
 
@@ -6,9 +7,9 @@ namespace CarrierPidgeon.BatchDriven
 {
     public interface IBatchDrivenInterfaceManager : IDisposable
     {
-        IEnumerable<IBatchDriven<ISender, IReceiver>> Interfaces { get; }
+        IEnumerable<IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver>> Interfaces { get; }
 
-        void Add(IBatchDriven<ISender, IReceiver> batchDrivenInterface);
+        void Add(IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver> batchDrivenInterface);
         void Start();
     }
 }

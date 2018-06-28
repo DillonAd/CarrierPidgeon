@@ -3,8 +3,5 @@ using System;
 
 namespace CarrierPidgeon.Core
 {
-    public interface ISender : IDisposable
-    {
-        void SendMessage();
-    }
+    public interface ISender : IDisposable { }
 }

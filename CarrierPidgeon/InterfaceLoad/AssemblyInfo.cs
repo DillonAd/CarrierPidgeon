@@ -1,4 +1,5 @@
 ﻿using CarrierPidgeon.Core;
+using CarrierPidgeon.Core.BatchDriven;
 using CarrierPidgeon.Core.EventDriven;
 using System;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace CarrierPidgeon.InterfaceLoad
             return Assembly.Load(assemblyName).ExportedTypes.FirstOrDefault(type =>
                 !type.IsAbstract &&
                 !type.IsInterface &&
-                (type.IsAssignableFrom(typeof(IBatchDriven<ISender, IReceiver>)) ||
-                type.IsAssignableFrom(typeof(IEventDriven<ISender, IEventDrivenReceiver>))));
+                (type.IsAssignableFrom(typeof(IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver>)) ||
+                type.IsAssignableFrom(typeof(IEventDriven<IEventDrivenSender, IEventDrivenReceiver>))));
         }
     }
 }

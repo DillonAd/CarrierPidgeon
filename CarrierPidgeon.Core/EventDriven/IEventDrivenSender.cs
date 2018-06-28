@@ -3,7 +3,7 @@ using System;
 
 namespace CarrierPidgeon.Core
 {
-    public interface IEventDrivenSender : IDisposable
+    public interface IEventDrivenSender : ISender, IDisposable
     {
         void SendMessage(EventMessage message);
     }

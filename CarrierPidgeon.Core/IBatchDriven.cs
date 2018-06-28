@@ -1,10 +1,11 @@
-﻿using System;
+﻿using CarrierPidgeon.Core.BatchDriven;
+using System;
 
 namespace CarrierPidgeon.Core
 {
     public interface IBatchDriven<TSender, TReceiver> : IInterface<TSender, TReceiver>
-        where TSender : ISender
-        where TReceiver : IReceiver
+        where TSender : IBatchDrivenSender
+        where TReceiver : IBatchDrivenReceiver
     {
         DateTime NextExecutionTime { get; }
         int IntervalMilliseconds { get; }

@@ -1,4 +1,5 @@
 ﻿using CarrierPidgeon.Core;
+using CarrierPidgeon.Core.BatchDriven;
 using CarrierPidgeon.Core.EventDriven;
 using System;
 
@@ -13,8 +14,8 @@ namespace CarrierPidgeon.InterfaceLoad
             Type = type;
                    
             if(type == null ||
-                (!typeof(IBatchDriven<ISender, IReceiver>).IsAssignableFrom(type) &&
-                !typeof(IEventDriven<ISender, IEventDrivenReceiver>).IsAssignableFrom(type)))
+                (!typeof(IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver>).IsAssignableFrom(type) &&
+                !typeof(IEventDriven<IEventDrivenSender, IEventDrivenReceiver>).IsAssignableFrom(type)))
             {
                 throw new InvalidCastException("Invalid Interface Type");
             }

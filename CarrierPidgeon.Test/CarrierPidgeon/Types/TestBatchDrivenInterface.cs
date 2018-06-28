@@ -1,12 +1,13 @@
 using CarrierPidgeon.Core;
+using CarrierPidgeon.Core.BatchDriven;
 using System;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon.Types
 {
-    public class TestBatchDrivenInterface : IBatchDriven<ISender, IReceiver>
+    public class TestBatchDrivenInterface : IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver>
     {
-        public IReceiver Receiver { get; }
-        public ISender Sender { get; }
+        public IBatchDrivenReceiver Receiver { get; }
+        public IBatchDrivenSender Sender { get; }
 
         public DateTime NextExecutionTime { get; private set; }
         public int IntervalMilliseconds { get; private set; }
