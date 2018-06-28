@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CarrierPidgeon.Core.EventDriven
+﻿namespace CarrierPidgeon.Core.EventDriven
 {
     public delegate void OnMessageReceived(EventMessage eventMessage);
 }

@@ -1,11 +1,8 @@
 using Apache.NMS;
-using Apache.NMS.ActiveMQ;
 using CarrierPidgeon.Component.ActiveMQ;
-using CarrierPidgeon.Core.Events;
+using CarrierPidgeon.Core.EventDriven;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Threading;
 using Xunit;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon.Component.ActiveMQ

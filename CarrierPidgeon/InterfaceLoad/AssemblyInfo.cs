@@ -1,4 +1,5 @@
 ﻿using CarrierPidgeon.Core;
+using CarrierPidgeon.Core.EventDriven;
 using System;
 using System.Linq;
 using System.Reflection;

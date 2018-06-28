@@ -1,12 +1,5 @@
-﻿using CarrierPidgeon.BatchDriven;
-using CarrierPidgeon.Core;
-using CarrierPidgeon.EventDriven;
-using CarrierPidgeon.InterfaceLoad;
-using CarrierPidgeon.Test.CarrierPidgeon.Fixtures;
+﻿using CarrierPidgeon.Test.CarrierPidgeon.Fixtures;
 using CarrierPidgeon.Test.CarrierPidgeon.Types;
-using Moq;
-using System;
-using System.Collections.Generic;
 using Xunit;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon

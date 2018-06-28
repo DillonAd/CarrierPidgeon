@@ -1,5 +1,4 @@
 ﻿using CarrierPidgeon.Core;
-using CarrierPidgeon.Core.Events;
 using System;
 
 namespace CarrierPidgeon.Component.SqlServer
@@ -13,7 +12,7 @@ namespace CarrierPidgeon.Component.SqlServer
             _connection = connection;
         }
 
-        public void SendMessage(EventMessage message)
+        public void SendMessage()
         {
             
         }

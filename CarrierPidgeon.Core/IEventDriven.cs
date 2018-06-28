@@ -1,4 +1,6 @@
-﻿namespace CarrierPidgeon.Core
+﻿using CarrierPidgeon.Core.EventDriven;
+
+namespace CarrierPidgeon.Core
 {
     public interface IEventDriven<TSender, TReceiver> : IInterface<TSender, TReceiver>
         where TSender : ISender

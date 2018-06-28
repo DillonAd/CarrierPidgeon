@@ -1,10 +1,9 @@
 ﻿using CarrierPidgeon.BatchDriven;
 using CarrierPidgeon.Core;
+using CarrierPidgeon.Core.EventDriven;
 using CarrierPidgeon.EventDriven;
 using CarrierPidgeon.InterfaceLoad;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 
 namespace CarrierPidgeon
 {

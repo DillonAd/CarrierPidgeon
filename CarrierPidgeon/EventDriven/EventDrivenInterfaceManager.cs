@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using CarrierPidgeon.Core;
+using CarrierPidgeon.Core.EventDriven;
 
 namespace CarrierPidgeon.EventDriven
 {
     public sealed class EventDrivenInterfaceManager : IEventDrivenInterfaceManager
     {
         public IEnumerable<IEventDriven<ISender, IEventDrivenReceiver>> Interfaces => _interfaces;
+
         private readonly List<IEventDriven<ISender, IEventDrivenReceiver>> _interfaces;
 
         public EventDrivenInterfaceManager()

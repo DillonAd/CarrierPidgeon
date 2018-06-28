@@ -1,4 +1,5 @@
 ﻿using CarrierPidgeon.Core;
+using CarrierPidgeon.Core.EventDriven;
 using CarrierPidgeon.EventDriven;
 using Moq;
 using System.Linq;

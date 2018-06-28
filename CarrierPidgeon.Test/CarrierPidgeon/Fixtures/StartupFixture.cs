@@ -1,5 +1,6 @@
 ﻿using CarrierPidgeon.BatchDriven;
 using CarrierPidgeon.Core;
+using CarrierPidgeon.Core.EventDriven;
 using CarrierPidgeon.EventDriven;
 using CarrierPidgeon.InterfaceLoad;
 using Moq;

@@ -1,5 +1,5 @@
 using CarrierPidgeon.Core;
-using System;
+using CarrierPidgeon.Core.EventDriven;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon.Types
 {
