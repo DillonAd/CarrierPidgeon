@@ -18,7 +18,7 @@ namespace CarrierPidgeon.Component.SqlServer
             Command = command;
 
             _connection = connection;
-            _command = new SqlCommand(_connection.Connection);
+            _command = new SqlCommand(_connection.Connection.ConnectionString);
         }
 
         public DataTable Pull(params object[] parameters)
