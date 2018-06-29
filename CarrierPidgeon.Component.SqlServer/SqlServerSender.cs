@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Component.SqlServer
 {
-    public class SqlServerPublisher : IBatchDrivenSender
+    public class SqlServerSender : IBatchDrivenSender
     {
         public string Command { get; }
 
