@@ -1,10 +1,13 @@
-﻿using CarrierPidgeon.Core;
+﻿using CarrierPidgeon.Core.BatchDriven;
 using System;
+using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Component.SqlServer
 {
-    public class SqlServerPublisher : ISender
+    public class SqlServerPublisher : IBatchDrivenSender
     {
+        public string Command { get; }
+
         private readonly SqlServerConnection _connection;
 
         public SqlServerPublisher(SqlServerConnection connection)
@@ -12,7 +15,12 @@ namespace CarrierPidgeon.Component.SqlServer
             _connection = connection;
         }
 
-        public void SendMessage()
+        public void Push(params object[] parameters)
+        {
+            
+        }
+
+        public async Task PushAsync(params object[] parameters)
         {
             
         }
