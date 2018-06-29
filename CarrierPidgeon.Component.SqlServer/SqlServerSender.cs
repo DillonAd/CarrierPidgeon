@@ -1,5 +1,6 @@
 ﻿using CarrierPidgeon.Core.BatchDriven;
 using System;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Component.SqlServer
@@ -9,10 +10,14 @@ namespace CarrierPidgeon.Component.SqlServer
         public string Command { get; }
 
         private readonly SqlServerConnection _connection;
+        private SqlCommand _command;
 
-        public SqlServerPublisher(SqlServerConnection connection)
+        public SqlServerSender(SqlServerConnection connection, string command)
         {
+            Command = command;
+
             _connection = connection;
+            _command = new SqlCommand(command, _connection.Connection);
         }
 
         public void Push(params object[] parameters)
@@ -33,7 +38,10 @@ namespace CarrierPidgeon.Component.SqlServer
 
         protected virtual void Dispose(bool disposing)
         {
-            _connection.Dispose();
+            if(disposing)
+            {
+                _connection.Dispose();
+            }
         }
     }
 }
