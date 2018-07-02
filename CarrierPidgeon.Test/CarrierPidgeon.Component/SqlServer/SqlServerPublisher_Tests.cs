@@ -31,7 +31,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Component.SqlServer
 
         [Fact]
         [Trait("Category", "unit")]
-        public void AddParameter_Success()
+        public void AddParameter_None_Success()
         {
             //Assemble
             var parameters = new List<object>();
@@ -51,7 +51,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Component.SqlServer
             sut.Push();
 
             //Assert
-            Assert.Equal(1, executeCount);
+            Assert.Empty(parameters);
         }
     }
 }
