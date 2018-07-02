@@ -8,17 +8,13 @@ namespace CarrierPidgeon.Component.SqlServer
 {
     public class SqlServerReceiver : IBatchDrivenReceiver
     {
-        public string Command { get; }
-        
-        private readonly SqlServerConnection _connection;
-        private readonly SqlCommand _command;
+        private readonly ISqlServerConnection _connection;
+        private readonly ISqlServerCommand _command;
 
-        public SqlServerReceiver(SqlServerConnection connection, string command)
+        public SqlServerReceiver(ISqlServerConnection connection, ISqlServerCommand command)
         {
-            Command = command;
-
             _connection = connection;
-            _command = new SqlCommand(_connection.Connection.ConnectionString);
+            _command = command;
         }
 
         public DataTable Pull(params object[] parameters)
@@ -42,7 +38,7 @@ namespace CarrierPidgeon.Component.SqlServer
             if(disposing)
             {
                 _command.Dispose();
-                _connection.Connection.Dispose();
+                _connection.Dispose();
             }
         }
     }

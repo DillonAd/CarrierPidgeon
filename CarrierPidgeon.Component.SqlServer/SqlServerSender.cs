@@ -7,25 +7,27 @@ namespace CarrierPidgeon.Component.SqlServer
 {
     public class SqlServerSender : IBatchDrivenSender
     {
-        public string Command => _connection.Command.CommandText;
+        private readonly ISqlServerConnection _connection;
+        private readonly ISqlServerCommand _command;
 
-        private readonly SqlServerConnection _connection;
-
-        public SqlServerSender(SqlServerConnection connection)
+        public SqlServerSender(ISqlServerConnection connection, ISqlServerCommand command)
         {
             _connection = connection;
+            _connection.Open();
+
+            _command = command;
         }
 
         public void Push(params object[] parameters)
         {
-            _connection.Command.Parameters.Clear();
+            _command.ClearParameters();
 
             foreach(object obj in parameters)
             {
-                _connection.Command.Parameters.Add(obj);
+                _command.AddParameter(obj);
             }
 
-            _connection.Command.ExecuteNonQuery();
+            _command.Execute();
         }
 
         public async Task PushAsync(params object[] parameters)
@@ -43,6 +45,7 @@ namespace CarrierPidgeon.Component.SqlServer
         {
             if(disposing)
             {
+                _connection.Close();
                 _connection.Dispose();
             }
         }
