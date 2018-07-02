@@ -21,6 +21,7 @@
     <ProjectReference Include="..\CarrierPidgeon.Core\CarrierPidgeon.Core.csproj" />
     <ProjectReference Include="..\CarrierPidgeon\CarrierPidgeon.csproj" />
     <ProjectReference Include="..\CarrierPidgeon.Component.ActiveMQ\CarrierPidgeon.Component.ActiveMQ.csproj" />
+    <ProjectReference Include="..\CarrierPidgeon.Component.SqlServer\CarrierPidgeon.Component.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>
