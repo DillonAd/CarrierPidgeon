@@ -3,21 +3,32 @@ using System.Data.SqlClient;
 
 namespace CarrierPidgeon.Component.SqlServer
 {
-    public sealed class SqlServerConnection : IDisposable
+    public class SqlServerConnection : ISqlServerConnection
     {
         private readonly SqlConnection _connection;
-        public SqlConnection Connection => _connection;
-
-        private readonly SqlCommand _command;
-        public SqlCommand Command => _command;
 
         public SqlServerConnection(string connectionString, string command)
         {
             _connection = new SqlConnection(connectionString);
-            _command = new SqlCommand(command, _connection);
+        }
+
+        public void Close()
+        {
+            _connection.Close();
+        }
+
+        public void Open()
+        {
+            _connection.Open();
         }
         
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             _connection.Dispose();
         }
