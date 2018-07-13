@@ -6,26 +6,27 @@ using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Component.ActiveMQ
 {
-    public class ActiveMQPublisher : ISender<IEntity>
+    public class ActiveMQSender<T> : ISender<T>
+        where T : IEntity
     {
         private readonly IInterfaceConnection _connection;
         private readonly IMessageProducer _producer;
 
-        public ActiveMQPublisher(IActiveMQConnection connection)
+        public ActiveMQSender(IActiveMQConnection connection)
         {
             _connection = connection;
             _producer = connection.GetProducer();
         }
 
-        public void Send(IEntity entity)
+        public void Send(T t)
         {
-            var msg = ((IActiveMQConnection)_connection).CreateObjectMessage(entity);
+            var msg = ((IActiveMQConnection)_connection).CreateObjectMessage(t);
             _producer.Send(msg);
         }
 
-        public async Task SendAsync(IEntity entity)
+        public async Task SendAsync(T t)
         {
-            await Task.Run(() => Send(entity));
+            await Task.Run(() => Send(t));
         }
 
         public void Dispose()

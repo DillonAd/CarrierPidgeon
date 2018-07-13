@@ -25,7 +25,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Component.ActiveMQ
             connectionMock.Setup(c => c.GetProducer())
                 .Returns(publisher);
 
-            var producer = new ActiveMQPublisher(connectionMock.Object);
+            var producer = new ActiveMQSender<EventMessage>(connectionMock.Object);
 
             var eventMessage = new EventMessage();
 
