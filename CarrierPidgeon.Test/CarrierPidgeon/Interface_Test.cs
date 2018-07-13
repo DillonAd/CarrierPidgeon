@@ -18,7 +18,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon
 
             //Act
             var @interface = new Interface(type);
-            var instance = @interface.CreateInstance<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>>();
+            var instance = @interface.CreateInstance<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>>();
             
             //Assert
             Assert.NotNull(instance);

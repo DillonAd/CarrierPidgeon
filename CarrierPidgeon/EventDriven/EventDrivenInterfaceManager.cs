@@ -6,16 +6,16 @@ namespace CarrierPidgeon.EventDriven
 {
     public sealed class EventDrivenInterfaceManager : IEventDrivenInterfaceManager
     {
-        public IEnumerable<IEventDriven<ISender<IEntity>, IEventDrivenReceiver>> Interfaces => _interfaces;
+        public IEnumerable<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>> Interfaces => _interfaces;
 
-        private readonly List<IEventDriven<ISender<IEntity>, IEventDrivenReceiver>> _interfaces;
+        private readonly List<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>> _interfaces;
 
         public EventDrivenInterfaceManager()
         {
-            _interfaces = new List<IEventDriven<ISender<IEntity>, IEventDrivenReceiver>>();
+            _interfaces = new List<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>>();
         }
 
-        public void Add(IEventDriven<ISender<IEntity>, IEventDrivenReceiver> @interface) => _interfaces.Add(@interface);
+        public void Add(IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>> @interface) => _interfaces.Add(@interface);
 
         public void Start() => _interfaces.ForEach(i => i.Start());
 

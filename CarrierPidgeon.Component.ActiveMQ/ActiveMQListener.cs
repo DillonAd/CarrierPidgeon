@@ -5,7 +5,8 @@ using System;
 
 namespace CarrierPidgeon.Component.ActiveMQ
 {
-    public class ActiveMQListener : IEventDrivenReceiver
+    public class ActiveMQListener<TReceiveType> : IEventDrivenReceiver<TReceiveType>
+        where TReceiveType : IEntity
     {
         private readonly IInterfaceConnection _connection;
         private readonly IMessageConsumer _consumer;

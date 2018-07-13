@@ -4,9 +4,9 @@ using System;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon.Types
 {
-    public class TestBatchDrivenInterface : IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>
+    public class TestBatchDrivenInterface : IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>
     {
-        public IBatchDrivenReceiver Receiver { get; }
+        public IBatchDrivenReceiver<IEntity> Receiver { get; }
         public ISender<IEntity> Sender { get; }
 
         public DateTime NextExecutionTime { get; private set; }

@@ -8,8 +8,8 @@ namespace CarrierPidgeon
 {
     public interface IStartup : IDisposable
     {
-        IEnumerable<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>> BatchDrivenInterfaces { get; }
-        IEnumerable<IEventDriven<ISender<IEntity>, IEventDrivenReceiver>> EventDrivenInterfaces { get; }
+        IEnumerable<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>> BatchDrivenInterfaces { get; }
+        IEnumerable<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>> EventDrivenInterfaces { get; }
 
         void Start();
     }

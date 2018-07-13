@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Core.BatchDriven
 {
-    public interface IBatchDrivenReceiver : IReceiver
+    public interface IBatchDrivenReceiver<TReceiveType> : IReceiver<TReceiveType>
+        where TReceiveType : IEntity
     {
         DataTable Pull(params object[] parameters);
 

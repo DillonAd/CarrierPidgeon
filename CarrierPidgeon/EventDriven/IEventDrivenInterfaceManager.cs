@@ -7,9 +7,9 @@ namespace CarrierPidgeon.EventDriven
 {
     public interface IEventDrivenInterfaceManager : IDisposable
     {
-        IEnumerable<IEventDriven<ISender<IEntity>, IEventDrivenReceiver>> Interfaces { get; }
+        IEnumerable<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>> Interfaces { get; }
 
-        void Add(IEventDriven<ISender<IEntity>, IEventDrivenReceiver> @interface);
+        void Add(IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>> @interface);
         void Start();
     }
 }

@@ -9,18 +9,18 @@ namespace CarrierPidgeon.BatchDriven
 {
     public sealed class BatchDrivenInterfaceManager : IBatchDrivenInterfaceManager
     {
-        public IEnumerable<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>> Interfaces => _interfaces;
-        private List<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>> _interfaces { get; set; }
+        public IEnumerable<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>> Interfaces => _interfaces;
+        private List<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>> _interfaces { get; set; }
 
         private bool _isDisposed;
         private Task _runner;
 
         public BatchDrivenInterfaceManager()
         {
-            _interfaces = new List<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>>();
+            _interfaces = new List<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>>();
         }
 
-        public void Add(IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver> @interface)
+        public void Add(IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>> @interface)
         {
             _interfaces.Add(@interface);
         }

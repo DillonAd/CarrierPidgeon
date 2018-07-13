@@ -3,9 +3,9 @@ using CarrierPidgeon.Core.EventDriven;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon.Types
 {
-    public class TestEventDrivenInterface : IEventDriven<ISender<IEntity>, IEventDrivenReceiver>
+    public class TestEventDrivenInterface : IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>
     {
-        public IEventDrivenReceiver Receiver { get; }
+        public IEventDrivenReceiver<IEntity> Receiver { get; }
         public ISender<IEntity> Sender { get; }
 
         public bool IsStarted { get; private set; }

@@ -13,8 +13,8 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Fixtures
 {
     public class StartupFixture
     {
-        private readonly List<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>> _batchDrivenInterfaces;
-        private readonly List<IEventDriven<ISender<IEntity>, IEventDrivenReceiver>> _eventDrivenInterfaces;
+        private readonly List<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>> _batchDrivenInterfaces;
+        private readonly List<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>> _eventDrivenInterfaces;
         private readonly List<string> _files;
         public readonly List<Type> _types;
 
@@ -32,8 +32,8 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Fixtures
 
         public StartupFixture()
         {
-            _batchDrivenInterfaces = new List<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>>();
-            _eventDrivenInterfaces = new List<IEventDriven<ISender<IEntity>, IEventDrivenReceiver>>();
+            _batchDrivenInterfaces = new List<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>>();
+            _eventDrivenInterfaces = new List<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>>();
             _files = new List<string>();
             _types = new List<Type>();
 
@@ -43,16 +43,16 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Fixtures
             _assemblyInfoMock = new Mock<IAssemblyInfo>();
 
             _batchDrivenInterfaceManagerMock
-                .Setup(b => b.Add(It.IsAny<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>>()))
-                    .Callback((IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver> bd) => _batchDrivenInterfaces.Add(bd));
+                .Setup(b => b.Add(It.IsAny<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>>()))
+                    .Callback((IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>> bd) => _batchDrivenInterfaces.Add(bd));
             
             _batchDrivenInterfaceManagerMock
                 .Setup(b => b.Interfaces)
                     .Returns(_batchDrivenInterfaces);
 
             _eventDrivenInterfaceManagerMock
-                .Setup(b => b.Add(It.IsAny<IEventDriven<ISender<IEntity>, IEventDrivenReceiver>>()))
-                    .Callback((IEventDriven<ISender<IEntity>, IEventDrivenReceiver> ed) => _eventDrivenInterfaces.Add(ed));
+                .Setup(b => b.Add(It.IsAny<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>>()))
+                    .Callback((IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>> ed) => _eventDrivenInterfaces.Add(ed));
             
             _eventDrivenInterfaceManagerMock
                 .Setup(e => e.Interfaces)

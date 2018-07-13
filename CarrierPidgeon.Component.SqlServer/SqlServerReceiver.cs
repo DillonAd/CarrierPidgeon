@@ -1,3 +1,4 @@
+using CarrierPidgeon.Core;
 using CarrierPidgeon.Core.BatchDriven;
 using System;
 using System.Data;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Component.SqlServer
 {
-    public class SqlServerReceiver : IBatchDrivenReceiver
+    public class SqlServerReceiver<TReceiveType> : IBatchDrivenReceiver<TReceiveType>
+        where TReceiveType : IEntity
     {
         private readonly ISqlServerConnection _connection;
         private readonly ISqlServerCommand _command;

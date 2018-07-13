@@ -6,7 +6,7 @@ namespace CarrierPidgeon.Core
     public interface IBatchDriven<TSender, TReceiver> : 
         IInterface<TSender, TReceiver>
         where TSender : ISender<IEntity>
-        where TReceiver : IBatchDrivenReceiver
+        where TReceiver : IBatchDrivenReceiver<IEntity>
     {
         DateTime NextExecutionTime { get; }
         int IntervalMilliseconds { get; }

@@ -2,5 +2,6 @@
 
 namespace CarrierPidgeon.Core
 {
-    public interface IReceiver : IDisposable { }
+    public interface IReceiver<TReceiveType> : IDisposable
+        where TReceiveType : IEntity { }
 }

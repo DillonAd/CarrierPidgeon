@@ -1,5 +1,6 @@
 using Apache.NMS;
 using CarrierPidgeon.Component.ActiveMQ;
+using CarrierPidgeon.Core;
 using CarrierPidgeon.Core.EventDriven;
 using Moq;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Component.ActiveMQ
             connectionMock.Setup(c => c.GetConsumer())
                 .Returns(consumer);
 
-            var listener = new ActiveMQListener(connectionMock.Object);
+            var listener = new ActiveMQListener<IEntity>(connectionMock.Object);
             listener.MessageReceived += (EventMessage eventMessage) => messages.Add(eventMessage);
 
             var objMsg = new Mock<IObjectMessage>();
