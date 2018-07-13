@@ -4,10 +4,10 @@ using System;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon.Types
 {
-    public class TestBatchDrivenInterface : IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver>
+    public class TestBatchDrivenInterface : IBatchDriven<ISender, IBatchDrivenReceiver>
     {
         public IBatchDrivenReceiver Receiver { get; }
-        public IBatchDrivenSender Sender { get; }
+        public ISender Sender { get; }
 
         public DateTime NextExecutionTime { get; private set; }
         public int IntervalMilliseconds { get; private set; }

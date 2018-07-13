@@ -3,10 +3,10 @@ using CarrierPidgeon.Core.EventDriven;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon.Types
 {
-    public class TestEventDrivenInterface : IEventDriven<IEventDrivenSender, IEventDrivenReceiver>
+    public class TestEventDrivenInterface : IEventDriven<ISender, IEventDrivenReceiver>
     {
         public IEventDrivenReceiver Receiver { get; }
-        public IEventDrivenSender Sender { get; }
+        public ISender Sender { get; }
 
         public bool IsStarted { get; private set; }
         public bool IsDisposed { get; private set; }
