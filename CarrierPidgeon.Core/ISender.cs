@@ -4,9 +4,10 @@ using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Core
 {
-    public interface ISender<T> : IDisposable 
+    public interface ISender<in TSendType> : IDisposable 
+        where TSendType : IEntity
     {
-        void Send(T t);
-        Task SendAsync(T t);
+        void Send(TSendType t);
+        Task SendAsync(TSendType t);
     }
 }
