@@ -5,7 +5,7 @@ namespace CarrierPidgeon.Core
     public interface IDatabaseSender<TSendType> : ISender<TSendType>
         where TSendType : IEntity
     {
-        void Send(string[] names, TSendType t);
-        Task SendAsync(string[] names, TSendType t);
+        void Send(string[] parameterNames, TSendType t);
+        Task SendAsync(string[] parameterNames, TSendType t);
     }
 }
