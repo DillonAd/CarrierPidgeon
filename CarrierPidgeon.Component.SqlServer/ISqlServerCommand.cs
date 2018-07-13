@@ -4,7 +4,7 @@ namespace CarrierPidgeon.Component.SqlServer
 {
     public interface ISqlServerCommand : IDisposable
     {
-        void AddParameter(object obj);
+        void AddParameter(string name, object value);
         void ClearParameters();
         void Execute();
     }

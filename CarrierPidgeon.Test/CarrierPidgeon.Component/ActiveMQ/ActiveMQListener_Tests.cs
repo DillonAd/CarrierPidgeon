@@ -54,7 +54,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Component.ActiveMQ
             var message = new EventMessage();
 
             //Act
-            publisher.SendMessage(message);
+            publisher.Send(message);
 
             //Assert
             Assert.Equal(1, callCount);

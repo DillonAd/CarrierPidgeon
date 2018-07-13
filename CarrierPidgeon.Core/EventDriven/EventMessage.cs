@@ -1,6 +1,6 @@
 ﻿namespace CarrierPidgeon.Core.EventDriven
 {
-    public class EventMessage
+    public class EventMessage : IEntity
     {
         public object Content { get; set; }
 

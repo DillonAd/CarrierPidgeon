@@ -10,8 +10,8 @@ namespace CarrierPidgeon
 {
     public sealed class Startup : IStartup
     {
-        public IEnumerable<IBatchDriven<ISender, IBatchDrivenReceiver>> BatchDrivenInterfaces => _batchDrivenInterfaceManager.Interfaces;
-        public IEnumerable<IEventDriven<ISender, IEventDrivenReceiver>> EventDrivenInterfaces => _eventDrivenInterfaceManager.Interfaces;
+        public IEnumerable<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>> BatchDrivenInterfaces => _batchDrivenInterfaceManager.Interfaces;
+        public IEnumerable<IEventDriven<ISender<IEntity>, IEventDrivenReceiver>> EventDrivenInterfaces => _eventDrivenInterfaceManager.Interfaces;
 
         private readonly IBatchDrivenInterfaceManager _batchDrivenInterfaceManager;
         private readonly IEventDrivenInterfaceManager _eventDrivenInterfaceManager;
@@ -54,19 +54,19 @@ namespace CarrierPidgeon
 
         private void AddInterfaces(IEnumerable<Interface> interfaces)
         {
-            IBatchDriven<ISender, IBatchDrivenReceiver> batchDrivenInterface;
-            IEventDriven<ISender, IEventDrivenReceiver> eventDrivenInterface;
+            IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver> batchDrivenInterface;
+            IEventDriven<ISender<IEntity>, IEventDrivenReceiver> eventDrivenInterface;
 
             foreach (var @interface in interfaces)
             {
-                if (typeof(IBatchDriven<ISender, IBatchDrivenReceiver>).IsAssignableFrom(@interface.Type))
+                if (typeof(IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>).IsAssignableFrom(@interface.Type))
                 {
-                    batchDrivenInterface = @interface.CreateInstance<IBatchDriven<ISender, IBatchDrivenReceiver>>();
+                    batchDrivenInterface = @interface.CreateInstance<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver>>();
                     _batchDrivenInterfaceManager.Add(batchDrivenInterface);
                 }
-                else if (typeof(IEventDriven<ISender, IEventDrivenReceiver>).IsAssignableFrom(@interface.Type))
+                else if (typeof(IEventDriven<ISender<IEntity>, IEventDrivenReceiver>).IsAssignableFrom(@interface.Type))
                 {
-                    eventDrivenInterface = @interface.CreateInstance<IEventDriven<ISender, IEventDrivenReceiver>>();
+                    eventDrivenInterface = @interface.CreateInstance<IEventDriven<ISender<IEntity>, IEventDrivenReceiver>>();
                     _eventDrivenInterfaceManager.Add(eventDrivenInterface);
                 }
             }

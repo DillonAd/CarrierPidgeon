@@ -30,7 +30,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Component.ActiveMQ
             var eventMessage = new EventMessage();
 
             //Act
-            producer.SendMessage(eventMessage);
+            producer.Send(eventMessage);
 
             //Assert
             Assert.Single(messages);

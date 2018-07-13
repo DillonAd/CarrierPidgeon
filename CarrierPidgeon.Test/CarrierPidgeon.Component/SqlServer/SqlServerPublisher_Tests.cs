@@ -1,7 +1,9 @@
 using CarrierPidgeon.Component.SqlServer;
+using CarrierPidgeon.Core;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Xunit;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon.Component.SqlServer
@@ -21,38 +23,15 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Component.SqlServer
             sqlCmdMock.Setup(s => s.Execute())
                 .Callback(() => executeCount++);
 
-            var sut = new SqlServerSender(sqlConnMock.Object, sqlCmdMock.Object);
+            var sut = new SqlServerSender<IEntity>(sqlConnMock.Object, sqlCmdMock.Object);
+
+            var msgMock = new Mock<IEntity>();
 
             //Act
-            sut.Push();
+            sut.Send(msgMock.Object);
 
             //Assert
             Assert.Equal(1, executeCount);
-        }
-
-        [Fact]
-        [Trait("Category", "unit")]
-        public void AddParameter_None_Success()
-        {
-            //Assemble
-            var parameters = new List<object>();
-            var executeCount = 0;
-
-            var sqlConnMock = new Mock<ISqlServerConnection>();
-            var sqlCmdMock = new Mock<ISqlServerCommand>();
-            sqlCmdMock.Setup(s => s.AddParameter(It.IsAny<object>()))
-                .Callback((object obj) => parameters.Add(obj));
-
-            sqlCmdMock.Setup(s => s.Execute())
-                .Callback(() => executeCount++);
-
-            var sut = new SqlServerSender(sqlConnMock.Object, sqlCmdMock.Object);
-
-            //Act
-            sut.Push();
-
-            //Assert
-            Assert.Empty(parameters);
         }
 
         [Fact]
@@ -65,8 +44,8 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Component.SqlServer
 
             var sqlConnMock = new Mock<ISqlServerConnection>();
             var sqlCmdMock = new Mock<ISqlServerCommand>();
-            sqlCmdMock.Setup(s => s.AddParameter(It.IsAny<object>()))
-                .Callback((object obj) => parameters.Add(obj));
+            sqlCmdMock.Setup(s => s.AddParameter(It.IsAny<string>(), It.IsAny<object>()))
+                .Callback((string name, object value) => parameters.Add(value));
 
             sqlCmdMock.Setup(s => s.Execute())
                 .Callback(() => executeCount++);
@@ -81,13 +60,22 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Component.SqlServer
                 DateTime.Now
             };
 
-            var sut = new SqlServerSender(sqlConnMock.Object, sqlCmdMock.Object);
+            var sut = new SqlServerSender<IEntity>(sqlConnMock.Object, sqlCmdMock.Object);
+
+            var testEntity = new TestEntity();
+            var propertyCount = testEntity.GetType().GetProperties().Length;
 
             //Act
-            sut.Push("test", 1);
+            sut.Send(testEntity);
 
             //Assert
-            Assert.Equal(2, parameters.Count);
+            Assert.Equal(2, propertyCount);
+        }
+
+        class TestEntity : IEntity
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
         }
     }
 }

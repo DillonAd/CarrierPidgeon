@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Component.SqlServer
 {
-    public class SqlServerSender : ISender
+    public class SqlServerSender<TSendType> : ISender<TSendType>
     {
         private readonly ISqlServerConnection _connection;
         private readonly ISqlServerCommand _command;
@@ -18,21 +18,21 @@ namespace CarrierPidgeon.Component.SqlServer
             _command = command;
         }
 
-        public void Push(params object[] parameters)
+        public void Send(TSendType t)
         {
             _command.ClearParameters();
 
-            foreach(object obj in parameters)
+            foreach(var property in t.GetType().GetProperties())
             {
-                _command.AddParameter(obj);
+                _command.AddParameter($"@{property.Name}", property.GetValue(t));
             }
 
             _command.Execute();
         }
 
-        public async Task PushAsync(params object[] parameters)
+        public async Task SendAsync(TSendType t)
         {
-            await Task.Run(() => Push(parameters));       
+            await Task.Run(() => Send(t));       
         }
 
         public void Dispose()

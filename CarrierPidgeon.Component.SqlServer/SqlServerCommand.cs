@@ -13,9 +13,9 @@ namespace CarrierPidgeon.Component.SqlServer
             _command = new SqlCommand(command, connection);
         }
 
-        public void AddParameter(object obj)
+        public void AddParameter(string name, object value)
         {
-            _command.Parameters.Add(obj);
+            _command.Parameters.AddWithValue(name, value);
         }
 
         public void ClearParameters()

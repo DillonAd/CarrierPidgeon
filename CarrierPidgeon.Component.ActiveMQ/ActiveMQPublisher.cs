@@ -2,10 +2,11 @@
 using CarrierPidgeon.Core;
 using CarrierPidgeon.Core.EventDriven;
 using System;
+using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Component.ActiveMQ
 {
-    public class ActiveMQPublisher : ISender
+    public class ActiveMQPublisher : ISender<IEntity>
     {
         private readonly IInterfaceConnection _connection;
         private readonly IMessageProducer _producer;
@@ -16,10 +17,15 @@ namespace CarrierPidgeon.Component.ActiveMQ
             _producer = connection.GetProducer();
         }
 
-        public void SendMessage(EventMessage message)
+        public void Send(IEntity entity)
         {
-            var msg = ((IActiveMQConnection)_connection).CreateObjectMessage(message);
+            var msg = ((IActiveMQConnection)_connection).CreateObjectMessage(entity);
             _producer.Send(msg);
+        }
+
+        public async Task SendAsync(IEntity entity)
+        {
+            await Task.Run(() => Send(entity));
         }
 
         public void Dispose()
