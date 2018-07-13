@@ -4,7 +4,7 @@ using System;
 namespace CarrierPidgeon.Core
 {
     public interface IBatchDriven<TSender, TReceiver> : IInterface<TSender, TReceiver>
-        where TSender : IBatchDrivenSender
+        where TSender : ISender
         where TReceiver : IBatchDrivenReceiver
     {
         DateTime NextExecutionTime { get; }

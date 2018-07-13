@@ -1,11 +1,11 @@
-﻿using CarrierPidgeon.Core.BatchDriven;
+﻿using CarrierPidgeon.Core;
 using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Component.SqlServer
 {
-    public class SqlServerSender : IBatchDrivenSender
+    public class SqlServerSender : ISender
     {
         private readonly ISqlServerConnection _connection;
         private readonly ISqlServerCommand _command;

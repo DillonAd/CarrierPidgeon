@@ -5,7 +5,7 @@ using System;
 
 namespace CarrierPidgeon.Component.ActiveMQ
 {
-    public class ActiveMQPublisher : IEventDrivenSender
+    public class ActiveMQPublisher : ISender
     {
         private readonly IInterfaceConnection _connection;
         private readonly IMessageProducer _producer;

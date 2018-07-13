@@ -15,8 +15,8 @@ namespace CarrierPidgeon.InterfaceLoad
             return Assembly.Load(assemblyName).ExportedTypes.FirstOrDefault(type =>
                 !type.IsAbstract &&
                 !type.IsInterface &&
-                (type.IsAssignableFrom(typeof(IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver>)) ||
-                type.IsAssignableFrom(typeof(IEventDriven<IEventDrivenSender, IEventDrivenReceiver>))));
+                (type.IsAssignableFrom(typeof(IBatchDriven<ISender, IBatchDrivenReceiver>)) ||
+                type.IsAssignableFrom(typeof(IEventDriven<ISender, IEventDrivenReceiver>))));
         }
     }
 }

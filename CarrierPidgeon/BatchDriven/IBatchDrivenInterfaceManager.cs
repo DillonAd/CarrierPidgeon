@@ -7,9 +7,9 @@ namespace CarrierPidgeon.BatchDriven
 {
     public interface IBatchDrivenInterfaceManager : IDisposable
     {
-        IEnumerable<IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver>> Interfaces { get; }
+        IEnumerable<IBatchDriven<ISender, IBatchDrivenReceiver>> Interfaces { get; }
 
-        void Add(IBatchDriven<IBatchDrivenSender, IBatchDrivenReceiver> batchDrivenInterface);
+        void Add(IBatchDriven<ISender, IBatchDrivenReceiver> @interface);
         void Start();
     }
 }
