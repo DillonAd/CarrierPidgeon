@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace CarrierPidgeon.Component.SqlServer
@@ -11,6 +12,11 @@ namespace CarrierPidgeon.Component.SqlServer
         public SqlServerCommand(string command, SqlConnection connection)
         {
             _command = new SqlCommand(command, connection);
+        }
+
+        public void AddParameter(object value)
+        {
+            _command.Parameters.Add(value);
         }
 
         public void AddParameter(string name, object value)
@@ -28,6 +34,11 @@ namespace CarrierPidgeon.Component.SqlServer
             _command.ExecuteNonQuery();
         }
         
+        public IDataReader ExecuteReader()
+        {
+            return _command.ExecuteReader();
+        }
+
         public void Dispose()
         {
             Dispose(true);
