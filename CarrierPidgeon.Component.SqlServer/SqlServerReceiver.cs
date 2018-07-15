@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Component.SqlServer
 {
-    public class SqlServerReceiver<TReceiveType> : DatabaseMapper<TReceiveType>, IBatchDrivenReceiver<TReceiveType>
+    public class SqlServerReceiver<TReceiveType> : DatabaseReceiver<TReceiveType>, IBatchDrivenReceiver<TReceiveType>
         where TReceiveType : IEntity, new()
     {
         private readonly ISqlServerConnection _connection;

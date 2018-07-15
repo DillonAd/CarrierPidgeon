@@ -1,26 +1,27 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 
 namespace CarrierPidgeon.Core
 {
-    public abstract class DatabaseMapper<TEntity>
-        where TEntity : new()
+    public abstract class DatabaseReceiver<TEntity>
+        where TEntity : IEntity
     {
         private List<string> _fields;
         private IEnumerable<string> _properties;
 
-        public DatabaseMapper()
+        public DatabaseReceiver()
         {
             _properties = typeof(TEntity).GetProperties().Select(e => e.Name);
         }
-
 
         protected virtual IEnumerable<TEntity> Map(DataTable dataTable)
         {
             DataRow row;
             object value;
-            TEntity entity = new TEntity();
+            TEntity entity = (TEntity)Activator.CreateInstance(typeof(TEntity));
 
             for(int i = 0; i < dataTable.Rows.Count; i++)
             {
