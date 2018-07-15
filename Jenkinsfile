@@ -30,7 +30,7 @@ pipeline {
                     unstash "${BUILD_NUMBER}"
                     try
                     { 
-                        sh "dotnet test ./CarrierPidgeon.Test/CarrierPidgeon.Test.csproj --logger \"trx;LogFileName=unit_tests.xml\" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./lcov --no-build"
+                        sh "dotnet test ./CarrierPidgeon.Tests/CarrierPidgeon.Tests.csproj --logger \"trx;LogFileName=unit_tests.xml\" /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./lcov --no-build"
             			step([$class: 'MSTestPublisher', testResultsFile:"**/unit_tests.xml", failOnError: true, keepLongStdio: true])
                     } finally {
                         sh 'dotnet /opt/sonarscanner-msbuild/SonarScanner.MSBuild.dll end'
@@ -39,4 +39,4 @@ pipeline {
             }
         }
     }
-}
+}a
