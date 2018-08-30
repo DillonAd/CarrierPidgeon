@@ -1,6 +1,6 @@
 using System;
 
-namespace CarrierPidgeon.Notifications
+namespace CarrierPidgeon.Core.Notifications
 {
     public interface INotificationBus : IDisposable
     {

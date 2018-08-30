@@ -1,4 +1,4 @@
-namespace CarrierPidgeon.Notifications
+namespace CarrierPidgeon.Core.Notifications
 {
     public class Notification
     {

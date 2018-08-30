@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace CarrierPidgeon.Notifications
+namespace CarrierPidgeon.Core.Notifications
 {
     public interface INotificationSender : IDisposable
     {

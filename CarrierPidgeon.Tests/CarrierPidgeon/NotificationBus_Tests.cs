@@ -1,4 +1,4 @@
-using CarrierPidgeon.Notifications;
+using CarrierPidgeon.Core.Notifications;
 using Moq;
 using System.Collections.Generic;
 using System.Threading;
