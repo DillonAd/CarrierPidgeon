@@ -9,9 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CarrierPidgeon.Test.CarrierPidgeon.Fixtures
+namespace CarrierPidgeon.Test.CarrierPidgeon.Setup
 {
-    public class StartupFixture
+    public class StartupSetup
     {
         private readonly List<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>> _batchDrivenInterfaces;
         private readonly List<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>> _eventDrivenInterfaces;
@@ -30,7 +30,7 @@ namespace CarrierPidgeon.Test.CarrierPidgeon.Fixtures
         private readonly Mock<IAssemblyInfo> _assemblyInfoMock;
         public IAssemblyInfo AssemblyInfo => _assemblyInfoMock.Object;
 
-        public StartupFixture()
+        public StartupSetup()
         {
             _batchDrivenInterfaces = new List<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>>();
             _eventDrivenInterfaces = new List<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>>();
