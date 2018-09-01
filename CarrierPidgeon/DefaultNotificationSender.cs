@@ -1,8 +1,9 @@
+using CarrierPidgeon.Core.Notifications;
 using MongoDB.Driver;
 using System;
 using System.Threading.Tasks;
 
-namespace CarrierPidgeon.Core.Notifications
+namespace CarrierPidgeon
 {
     public class DefaultNotifiationSender : INotificationSender
     {
