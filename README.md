@@ -1,6 +1,6 @@
 # CarrierPidgeon
 
-![Build Status](https://codejanitor.dynu.net/jenkins/buildStatus/icon?job=CarrierPidgeon)
+[![Build Status](https://dev.azure.com/dillon-adams/GitHub/_apis/build/status/CarrierPidgeon)](https://dev.azure.com/dillon-adams/GitHub/_build/latest?definitionId=1)
 
 Carrier Pidgeon is a cross platform integration layer. The core functionality provides for both event driven and batch driven interfaces. Once the software is up an running it scans a directory for compiled interfaces that implement the ```IInterface<TSender, TReceiver>``` interface. This allows new interfaces to be added with ease.
 
