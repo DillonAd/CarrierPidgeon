@@ -27,19 +27,5 @@ namespace CarrierPidgeon
         {
             await _notificationCollection.InsertOneAsync(notification);
         }
-        
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected void Dispose(bool disposing)
-        {
-            if(disposing)
-            {
-                
-            }
-        }
     }
 }
