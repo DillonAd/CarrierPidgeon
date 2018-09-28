@@ -11,7 +11,7 @@ namespace CarrierPidgeon.Core
     {
         private readonly IEnumerable<string> _properties;
 
-        public DatabaseReceiver()
+        protected DatabaseReceiver()
         {
             _properties = typeof(TEntity).GetProperties().Select(e => e.Name);
         }
