@@ -9,7 +9,7 @@ namespace CarrierPidgeon.Core
     public abstract class DatabaseReceiver<TEntity>
         where TEntity : IEntity
     {
-        private IEnumerable<string> _properties;
+        private readonly IEnumerable<string> _properties;
 
         public DatabaseReceiver()
         {
