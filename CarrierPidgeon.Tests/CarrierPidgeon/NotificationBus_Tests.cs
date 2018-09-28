@@ -41,8 +41,6 @@ namespace CarrierPidgeon.Test
                 sut.Push(new Notification(string.Empty, string.Empty, string.Empty));
             }
 
-            sut.Dispose();
-
             //Assert
             Assert.Equal(notificationCount, sentNotifications.Count);
         }

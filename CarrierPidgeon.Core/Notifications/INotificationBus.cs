@@ -2,7 +2,7 @@ using System;
 
 namespace CarrierPidgeon.Core.Notifications
 {
-    public interface INotificationBus : IDisposable
+    public interface INotificationBus
     {
         void Push(Notification notification);
     }

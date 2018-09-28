@@ -23,20 +23,6 @@ namespace CarrierPidgeon.Core.Notifications
             _enqueued(this, new SendNotificationEventArgs(notification));
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected void Dispose(bool disposing)
-        {
-            if(disposing)
-            {
-                _sender.Dispose();
-            }
-        }
-
         private void Send(object sender, SendNotificationEventArgs e)
         {
             _sender.SendAsync(e.Notification);
