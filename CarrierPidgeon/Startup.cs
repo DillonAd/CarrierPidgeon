@@ -4,14 +4,13 @@ using CarrierPidgeon.Core.BatchDriven;
 using CarrierPidgeon.Core.EventDriven;
 using CarrierPidgeon.EventDriven;
 using CarrierPidgeon.InterfaceLoad;
-using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace CarrierPidgeon
 {
-    public sealed class Startup : IStartup, IHostedService
+    public sealed class Startup : IStartup
     {
         public IEnumerable<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>> BatchDrivenInterfaces => _batchDrivenInterfaceManager.Interfaces;
         public IEnumerable<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>> EventDrivenInterfaces => _eventDrivenInterfaceManager.Interfaces;
@@ -40,7 +39,6 @@ namespace CarrierPidgeon
 
             foreach (var file in dllFiles)
             {
-                System.Console.WriteLine(file);
                 var type = _assemblyInfo.GetInterfaceType(file);
                 interfaces.Add(new Interface(type));
             }
