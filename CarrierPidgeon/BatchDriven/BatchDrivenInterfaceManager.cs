@@ -50,7 +50,10 @@ namespace CarrierPidgeon.BatchDriven
         {
             _isDisposed = true;
             
-            while (!_runner.GetAwaiter().IsCompleted) { }
+            if(_runner != null)
+            {
+                _runner.Wait();
+            }
 
             _interfaces.ForEach(bdi => bdi.Dispose());
         }

@@ -8,7 +8,13 @@ namespace CarrierPidgeon.InterfaceLoad
     {
         public IEnumerable<string> GetDllFiles()
         {
-            var path = Directory.GetCurrentDirectory();
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "interfaces");
+
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             return Directory.GetFiles(path, "*.dll*");
         }
     }

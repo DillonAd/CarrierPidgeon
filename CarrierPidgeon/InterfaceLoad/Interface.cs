@@ -12,7 +12,7 @@ namespace CarrierPidgeon.InterfaceLoad
         public Interface(Type type)
         {
             Type = type;
-                   
+
             if(type == null ||
                 (!typeof(IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>).IsAssignableFrom(type) &&
                 !typeof(IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>).IsAssignableFrom(type)))
