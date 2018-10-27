@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MongoDB.Driver;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -27,14 +26,11 @@ namespace CarrierPidgeon
                 .ConfigureServices((hostContext, services) =>
             {
                 services.AddTransient<IAssemblyInfo, AssemblyInfo>()
-                    .AddSingleton<INotificationSender>(ns =>
-                    {
-                        return new DefaultNotifiationSender(new MongoClient(conn));
-                    })
-                    .AddTransient<IFileSystem, FileSystem>()
-                    .AddSingleton<IBatchDrivenInterfaceManager, BatchDrivenInterfaceManager>()
-                    .AddSingleton<IEventDrivenInterfaceManager, EventDrivenInterfaceManager>()
-                    .AddSingleton<IHostedService, Startup>();
+                        .AddSingleton<INotificationSender, DefaultNotifiationSender>()
+                        .AddTransient<IFileSystem, FileSystem>()
+                        .AddSingleton<IBatchDrivenInterfaceManager, BatchDrivenInterfaceManager>()
+                        .AddSingleton<IEventDrivenInterfaceManager, EventDrivenInterfaceManager>()
+                        .AddSingleton<IHostedService, Startup>();
             });
 
             await hostBuilder.RunConsoleAsync();

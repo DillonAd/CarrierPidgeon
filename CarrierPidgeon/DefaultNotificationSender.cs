@@ -1,31 +1,40 @@
 using CarrierPidgeon.Core.Notifications;
-using MongoDB.Driver;
 using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CarrierPidgeon
 {
     public class DefaultNotifiationSender : INotificationSender
     {
-        private readonly IMongoClient _client;
-        private readonly IMongoDatabase _database;
-        private readonly IMongoCollection<Notification> _notificationCollection;
+        private readonly List<Notification> _notifications; 
 
-        public DefaultNotifiationSender(IMongoClient client)
+        public DefaultNotifiationSender()
         {
-            _client = client;
-            _database = _client.GetDatabase("CarrierPidgeon");
-            _notificationCollection = _database.GetCollection<Notification>("notifications");
+            _notifications = new List<Notification>();
         }
 
         public void Send(Notification notification)
         {
-            _notificationCollection.InsertOne(notification);
+            _notifications.Add(notification);
+            RemoveOutOfDateNotifications();
         }
 
-        public async Task SendAsync(Notification notification)
+        public async Task SendAsync(Notification notification) =>
+            await Task.Run(() => Send(notification));
+
+        public void RemoveOutOfDateNotifications()
         {
-            await _notificationCollection.InsertOneAsync(notification);
+            for(int i = 0; i < _notifications.Count; i++)
+            {
+                if(_notifications[i].Created < DateTime.UtcNow.AddDays(1))
+                {
+                    _notifications.Remove(_notifications[i]);
+                }
+            }
         }
     }
 }
