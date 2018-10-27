@@ -34,7 +34,7 @@ namespace CarrierPidgeon
                     .AddTransient<IFileSystem, FileSystem>()
                     .AddSingleton<IBatchDrivenInterfaceManager, BatchDrivenInterfaceManager>()
                     .AddSingleton<IEventDrivenInterfaceManager, EventDrivenInterfaceManager>()
-                    .AddSingleton<IStartup, Startup>();
+                    .AddSingleton<IHostedService, Startup>();
             });
 
             await hostBuilder.RunConsoleAsync();

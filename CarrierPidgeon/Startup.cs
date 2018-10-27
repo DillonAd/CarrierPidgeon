@@ -4,11 +4,14 @@ using CarrierPidgeon.Core.BatchDriven;
 using CarrierPidgeon.Core.EventDriven;
 using CarrierPidgeon.EventDriven;
 using CarrierPidgeon.InterfaceLoad;
+using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CarrierPidgeon
 {
-    public sealed class Startup : IStartup
+    public sealed class Startup : IStartup, IHostedService
     {
         public IEnumerable<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>> BatchDrivenInterfaces => _batchDrivenInterfaceManager.Interfaces;
         public IEnumerable<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>> EventDrivenInterfaces => _eventDrivenInterfaceManager.Interfaces;
@@ -30,13 +33,14 @@ namespace CarrierPidgeon
             _assemblyInfo = assemblyInfo;
         }
 
-        public void Start()
+        public Task StartAsync(CancellationToken cancellationToken)
         {
             var dllFiles = _fileSystem.GetDllFiles();
             var interfaces = new List<Interface>();
 
             foreach (var file in dllFiles)
             {
+                System.Console.WriteLine(file);
                 var type = _assemblyInfo.GetInterfaceType(file);
                 interfaces.Add(new Interface(type));
             }
@@ -45,11 +49,15 @@ namespace CarrierPidgeon
 
             _eventDrivenInterfaceManager.Start();
             _batchDrivenInterfaceManager.Start();
+
+            return Task.CompletedTask;
         }
 
-        public void Dispose()
+        public Task StopAsync(CancellationToken cancellationToken)
         {
             _batchDrivenInterfaceManager.Dispose();
+
+            return Task.CompletedTask;
         }
 
         private void AddInterfaces(IEnumerable<Interface> interfaces)

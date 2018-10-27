@@ -6,11 +6,9 @@ using System.Collections.Generic;
 
 namespace CarrierPidgeon
 {
-    public interface IStartup : IDisposable
+    public interface IStartup
     {
         IEnumerable<IBatchDriven<ISender<IEntity>, IBatchDrivenReceiver<IEntity>>> BatchDrivenInterfaces { get; }
         IEnumerable<IEventDriven<ISender<IEntity>, IEventDrivenReceiver<IEntity>>> EventDrivenInterfaces { get; }
-
-        void Start();
     }
 }
