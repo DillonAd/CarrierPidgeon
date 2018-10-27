@@ -1,5 +1,6 @@
 ﻿using CarrierPidgeon.Test.CarrierPidgeon.Setup;
 using CarrierPidgeon.Test.CarrierPidgeon.Types;
+using System.Threading;
 using Xunit;
 
 namespace CarrierPidgeon.Test.CarrierPidgeon
@@ -11,21 +12,23 @@ namespace CarrierPidgeon.Test.CarrierPidgeon
         public void Start_BatchDriven_Success()
         {
             //Assemble
-            var fixture = new StartupSetup();
-            fixture.AddFile("testfile.dll");
-            fixture.AddType(typeof(TestBatchDrivenInterface));
+            var setup = new StartupSetup();
+            setup.AddFile("testfile.dll");
+            setup.AddType(typeof(TestBatchDrivenInterface));
+
+            var startup = new Startup(
+                setup.BatchDrivenInterfaceManager, 
+                setup.EventDrivenInterfaceManager,
+                setup.FileSystem,
+                setup.AssemblyInfo);
+
+            var tokenSource = new CancellationTokenSource();
 
             //Act
-            var startup = new Startup(
-                fixture.BatchDrivenInterfaceManager, 
-                fixture.EventDrivenInterfaceManager,
-                fixture.FileSystem,
-                fixture.AssemblyInfo);
-            
-            startup.Start();
+            startup.StartAsync(tokenSource.Token);
 
             //Assert
-            Assert.Single(fixture.BatchDrivenInterfaceManager.Interfaces);
+            Assert.Single(setup.BatchDrivenInterfaceManager.Interfaces);
         }
 
         [Fact]
@@ -37,14 +40,16 @@ namespace CarrierPidgeon.Test.CarrierPidgeon
             setup.AddFile("testfile.dll");
             setup.AddType(typeof(TestEventDrivenInterface));
 
-            //Act
             var startup = new Startup(
                 setup.BatchDrivenInterfaceManager, 
                 setup.EventDrivenInterfaceManager,
                 setup.FileSystem,
                 setup.AssemblyInfo);
             
-            startup.Start();
+            var tokenSource = new CancellationTokenSource();
+
+            //Act
+            startup.StartAsync(tokenSource.Token);
 
             //Assert
             Assert.Single(setup.EventDrivenInterfaceManager.Interfaces);
