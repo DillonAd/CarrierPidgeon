@@ -20,8 +20,6 @@ namespace CarrierPidgeon
                 .AddJsonFile("appsettings.json", true)
                 .Build();
 
-            var conn = config.GetSection("Configuration:NotificationConnection").Value;
-
             var hostBuilder = new HostBuilder()
                 .ConfigureServices((hostContext, services) =>
             {
