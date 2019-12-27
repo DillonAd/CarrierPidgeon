@@ -9,11 +9,11 @@ namespace CarrierPidgeon.Core
     public abstract class DatabaseReceiver<TEntity>
         where TEntity : IEntity
     {
-        private readonly IEnumerable<string> _properties;
+        private readonly IEnumerable<PropertyInfo> _properties;
 
         protected DatabaseReceiver()
         {
-            _properties = typeof(TEntity).GetProperties().Select(e => e.Name);
+            _properties = typeof(TEntity).GetProperties();
         }
 
         protected virtual IEnumerable<TEntity> Map(DataTable dataTable)
@@ -26,7 +26,7 @@ namespace CarrierPidgeon.Core
             {
                 row = dataTable.Rows[i];
 
-                foreach(var property in typeof(TEntity).GetProperties())
+                foreach(var property in _properties)
                 {
                     value = row[property.Name];
                     property.SetValue(entity, value);
