@@ -14,21 +14,23 @@ namespace CarrierPidgeon
     {
         public async static Task Main(string[] args)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true)
-                .Build();
-
             var hostBuilder = new HostBuilder()
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    var env = hostingContext.HostingEnvironment;
+
+                    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                })
                 .ConfigureServices((hostContext, services) =>
-            {
-                services.AddTransient<IAssemblyInfo, AssemblyInfo>()
-                        .AddSingleton<INotificationSender, DefaultNotifiationSender>()
-                        .AddTransient<IFileSystem, FileSystem>()
-                        .AddSingleton<IBatchDrivenInterfaceManager, BatchDrivenInterfaceManager>()
-                        .AddSingleton<IEventDrivenInterfaceManager, EventDrivenInterfaceManager>()
-                        .AddSingleton<IHostedService, Startup>();
-            });
+                {
+                    services.AddTransient<IAssemblyInfo, AssemblyInfo>()
+                            .AddSingleton<INotificationSender, DefaultNotifiationSender>()
+                            .AddTransient<IFileSystem, FileSystem>()
+                            .AddSingleton<IBatchDrivenInterfaceManager, BatchDrivenInterfaceManager>()
+                            .AddSingleton<IEventDrivenInterfaceManager, EventDrivenInterfaceManager>()
+                            .AddSingleton<IHostedService, Startup>();
+                });
 
             await hostBuilder.RunConsoleAsync();
         }
