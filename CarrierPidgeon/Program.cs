@@ -5,7 +5,6 @@ using CarrierPidgeon.EventDriven;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace CarrierPidgeon
@@ -20,7 +19,7 @@ namespace CarrierPidgeon
                     var env = hostingContext.HostingEnvironment;
 
                     config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                          .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
