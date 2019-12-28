@@ -1,5 +1,4 @@
-﻿using CarrierPidgeon.Core.EventDriven;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Core

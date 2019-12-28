@@ -2,7 +2,6 @@
 using CarrierPidgeon.Core.BatchDriven;
 using CarrierPidgeon.Core.EventDriven;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Collections.Generic;
 
 namespace CarrierPidgeon

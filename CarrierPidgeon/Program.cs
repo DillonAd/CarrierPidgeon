@@ -3,7 +3,6 @@ using CarrierPidgeon.InterfaceLoad;
 using CarrierPidgeon.Core.Notifications;
 using CarrierPidgeon.EventDriven;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.IO;

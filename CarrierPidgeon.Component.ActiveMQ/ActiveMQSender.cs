@@ -1,6 +1,5 @@
 ﻿using Apache.NMS;
 using CarrierPidgeon.Core;
-using CarrierPidgeon.Core.EventDriven;
 using System;
 using System.Threading.Tasks;
 
