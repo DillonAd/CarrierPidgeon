@@ -3,7 +3,6 @@ using CarrierPidgeon.Core.BatchDriven;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace CarrierPidgeon.Component.SqlServer
